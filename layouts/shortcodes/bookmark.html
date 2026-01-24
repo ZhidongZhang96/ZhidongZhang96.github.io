@@ -1,0 +1,16 @@
+<a href="{{ .Get "url" }}" target="_blank" class="bookmark-card">
+    <div class="bookmark-content">
+        <div class="bookmark-title">{{ .Get "title" }}</div>
+        <div class="bookmark-desc">{{ .Get "desc" }}</div>
+        <div class="bookmark-host">
+            <i class="fas fa-link" style="margin-right: 4px;"></i>
+            {{- $u := urls.Parse (.Get "url") -}}
+            {{- $u.Host -}}
+        </div>
+    </div>
+    {{ with .Get "image" }}
+    <div class="bookmark-image">
+        <img src="{{ . }}" alt="">
+    </div>
+    {{ end }}
+</a>

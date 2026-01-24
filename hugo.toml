@@ -10,6 +10,9 @@ theme = []
       block = [['$$', '$$'], ['\\[', '\\]']]
       inline = [['$', '$'], ['\\(', '\\)']]
 
+  [markup.goldmark.renderer]
+    unsafe = true
+
   [markup.highlight]
     style = "friendly"
     noClasses = true

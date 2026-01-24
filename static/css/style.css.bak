@@ -243,16 +243,10 @@ section {
     margin-right: 5px;
 }
 
-/* Specific override for badge images to prevent them from being centered by generic img rules */
-.main-content .badge-img, .badge-img {
+.badge-img {
     height: 20px;
     vertical-align: middle;
     margin-right: 5px;
-    display: inline-block;
-    margin-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    border-radius: 0;
 }
 
 /* Code Blocks */
@@ -275,26 +269,6 @@ pre code {
     word-break: normal;
     background-color: transparent;
     border: 0;
-}
-
-/* Callout / Aside - Scoped to blog content only */
-.blog-content aside {
-    padding: 1rem 1rem 1rem 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--primary-color);
-    background-color: #f8f9fa;
-    border-radius: 4px;
-    position: relative;
-    font-size: 0.95rem;
-    color: var(--text-color);
-}
-
-.blog-content aside p {
-    margin: 0;
-}
-
-.blog-content aside strong {
-    color: #000;
 }
 
 /* Inline code */
@@ -326,98 +300,6 @@ p code, li code, table code {
 .highlight pre {
     margin-bottom: 0;
     overflow: visible; /* Let the container handle overflow */
-}
-
-/* Bookmark Card */
-.bookmark-card {
-    display: flex;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    margin: 1.5rem 0;
-    text-decoration: none !important;
-    color: inherit;
-    overflow: hidden;
-    transition: background-color 0.2s, box-shadow 0.2s;
-    background-color: #fff;
-    height: 120px; /* Fixed height for consistency */
-}
-
-.bookmark-card:hover {
-    background-color: #fcfcfc;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    text-decoration: none;
-}
-
-.bookmark-content {
-    flex: 1;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-}
-
-.bookmark-title {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.4;
-}
-
-.bookmark-desc {
-    font-size: 0.85rem;
-    color: var(--light-text);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.5;
-    margin-bottom: auto;
-}
-
-.bookmark-host {
-    font-size: 0.75rem;
-    color: #999;
-    display: flex;
-    align-items: center;
-    margin-top: 0.5rem;
-}
-
-.bookmark-image {
-    width: 180px;
-    flex-shrink: 0;
-    background-color: #f9f9f9;
-    position: relative;
-}
-
-.bookmark-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: 0 !important;
-    border-radius: 0 !important;
-}
-
-@media (max-width: 600px) {
-    .bookmark-card {
-        height: auto;
-        flex-direction: column-reverse;
-    }
-    .bookmark-image {
-        width: 100%;
-        height: 160px;
-    }
-    .bookmark-content {
-        padding: 1rem;
-    }
-    .bookmark-desc {
-        -webkit-line-clamp: 3;
-    }
 }
 
 /* Footer */
