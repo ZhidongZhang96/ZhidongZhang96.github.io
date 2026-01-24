@@ -1,50 +1,98 @@
 - title: "Large Model Based Crossmodal Chinese Poetry Creation"
-  year: "2024-5"
+  year: "2024-2025"
   note: "Bachelor's thesis under supervision of [Dr. Weiping Zhu](https://cs.whu.edu.cn/info/1019/2920.htm)"
   description: "Developed a crossmodal poetry generation system using large models, with functions including high-quality poetry generation, analysis and scoring, and optimization. The whole process all provides user-friendly interpretation for better user experience, e.g., allusion annotation and appreciation. The system firstly utilized [CLIP](https://github.com/openai/CLIP?tab=readme-ov-file), [miniGPT4](https://minigpt-4.github.io) and ERNIE (*paper accepted*), and finally swichted to DeepSeek's series models for better performance. "
   links:
     - name: "Thesis"
-      url: "files/2021302111480-张志东-基于大模型的跨模态古诗创作.pdf"
+      url: "files/Bachelor-thesis.pdf"
     - name: "Slides"
-      url: "files/毕设答辩-张志东.pdf"
+      url: "files/slides-bachelor-thesis.pdf"
   badges:
-    - image: "https://custom-icon-badges.demolab.com/badge/Deepseek-4D6BFF?logo=deepseek&logoColor=fff"
     - image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white"
+    - image: "https://custom-icon-badges.demolab.com/badge/Deepseek-4D6BFF?logo=deepseek&logoColor=fff"
 
 - title: "RNN Analysis on Same-Different Task"
   year: "2024"
   note: "Research Project under supervision of [Dr. Xiangbin Teng](https://www.psy.cuhk.edu.hk/index.php/component/sppagebuilder/?view=page&id=558)"
   description: "Trained RNNs on the same-different task under varying noise levels by neurogym, optimizing the code for readability and extensibility. Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope."
   badges:
-    - image: "https://img.shields.io/badge/--red?logo=pytorch&label=PyTorch"
+    - image: "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"
+    - image: "https://img.shields.io/badge/NumPy-4DABCF?logo=numpy&logoColor=fff"
 
 - title: "The Working Memory Capacity of RNN"
   year: "2024"
-  note: "Course Project for NMA"
+  note: "Course Project for Neuomatch Academy 2024"
   description: "Explored various effects of parameter settings on the working memory capacity of RNNs."
   links: 
     - name: "Example Code"
       url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view?usp=sharing"
   badges:
-    - image: "https://img.shields.io/badge/--yellow?logo=googlecolab&label=Colab"
+    - image: "https://img.shields.io/badge/Google%20Colab-F9AB00?logo=googlecolab&logoColor=fff"
 
 - title: "Data Analysis on Forward Flow Task"
   year: "2024"
   note: "Research Project under supervision of [Prof. Yunzhe Liu](https://brain.bnu.edu.cn/kytd/jsyjy/Ljs/18e25c12984e48eb966932924b9b76c7.htm)"
   description: "Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings. Analyzed the correlation between participants' scale scores and statistical indicators."
+  badges:
+    - image: "https://img.shields.io/badge/NumPy-4DABCF?logo=numpy&logoColor=fff"
+    - image: "https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white"
 
 - title: "PoetryChat"
-  year: "2024"
+  year: "2023"
   note: "iFLYTEK AI Developer Competition"
   description: "An interactive poetry learning assistant based on LLM for different ages supports different chatting styles, oneline search, RAG, and image generation."
   links:
     - name: "Code"
       url: "https://github.com/ZhidongZhang96/PoetryChat"
   badges:
-    - image: "https://img.shields.io/badge/LangChain-1c3c3c.svg?logo=langchain&logoColor=white"
     - image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white"
-    - image: "https://img.shields.io/badge/--yellow?logo=huggingface&label=huggingface"
+    - image: "https://img.shields.io/badge/LangChain-1c3c3c.svg?logo=langchain&logoColor=white"
+    - image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white"
     
+
+- title: "Paper classification based on abstracts"
+  year: "2023"
+  note: "Course Project for Commercial Intelligence"
+  description: "Implemented paper classification based on abstracts using BERT models. *(My first project about machine learning! :D)*"
+  badges:
+    - image: "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"
+    - image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white"
+    - image: "https://img.shields.io/badge/Transformer-orange"
+
+
+- title: "Ruyi Mirror"
+  year: "2023"
+  note: "Course Project for Human-Computer Interaction"
+  description: "Designed and inplemented a demo for a virtual application, which was set to be a magical mirror that can analyze the skin, provide recommadations and keep track of the skin conditions daily. Ruyi (如意) means 'as you wish' in Chinese."
+  links:
+    - name: "Demo"
+      url: "https://modao.cc/proto/0X3fP4o7t9dj2sCtnxuJqB/sharing?view_mode=device&screen=rbpTvpkt29ZmGnIv8"
+  badges:
+    - image: "https://img.shields.io/badge/墨刀--s?color=%23EB483F"
+    # - image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white"
+    # - image: "https://img.shields.io/badge/Transformer-orange"
+
+- title: "Sport-Record"
+  year: "2023"
+  note: "Course Project for Mobile Application Development"
+  description: "A demo app for recording sports data, including user management, sport data recording and simple statistics. Developed using Swift and SwiftUI, with data persistence handled by SQLite."
+  links:
+    - name: "Code"
+      url: "https://github.com/ZhidongZhang96/Sport-Record"
+  badges:
+    - image: "https://img.shields.io/badge/Swift-F54A2A?logo=swift&logoColor=white"
+    - image: "https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white"
+
+- title: "Exam Master"
+  year: "2022"
+  note: "Course Project for Primary Project Practice (Teamwork)"
+  description: "A Roguelike game asking players to explore the rooms, fight monsters and earn gold coins as as to 'pass the exam'. Inspired by *Crypt of the NecroDancer*, the player can only move and attack to the rhythm of the background music. Developed using Unity and C#. *(tbh how to play the game has nothing to do with eaxm, just some funny concepts mapping of freshmen)*"
+  links:
+    - name: "Slides"
+      url: "files/“考试达人”.pdf"
+  badges:
+    - image: "https://custom-icon-badges.demolab.com/badge/C%23-%23239120.svg?logo=cshrp&logoColor=white"
+    - image: "https://img.shields.io/badge/Unity-%23000000.svg?logo=unity&logoColor=white"
 # - title: "Awesome AI Project"
 #   year: "2023"
 #   role: "Lead Developer"

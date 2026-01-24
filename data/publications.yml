@@ -1,11 +1,14 @@
 - title: "Large Model Based Crossmodal Chinese Poetry Creation"
-  authors: "Liwen Yang*; **Zhidong Zhang***; Kaipeng Niu; Sitian Pan; Weiping Zhu; Chao Ma"
+  authors: "Liwen Yang*, **Zhidong Zhang***, Kaipeng Niu, Sitian Pan, Weiping Zhu, Chao Ma"
   venue: "IEEE Smart World Congress (SWC)"
   year: 2024
   links:
     - name: "DOI"
       url: "https://doi.org/10.1109/SWC62898.2024.00034"
       type: "primary"
+    - name: "Slides"
+      url: "files/slides1.pdf"
+      type: "secondary"
 
 # - title: "Novel Architecture for Image Recognition"
 #   authors: "Li Si, **Zhang San**"

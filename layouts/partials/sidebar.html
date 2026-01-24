@@ -1,0 +1,43 @@
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="profile-container">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                {{ if .Site.Params.avatar }}
+                <img src="{{ .Site.Params.avatar | relURL }}" alt="Avatar" class="avatar">
+                {{ else }}
+                <div class="avatar-placeholder"></div>
+                {{ end }}
+                
+                <h1 class="name">{{ .Site.Params.name }}</h1>
+            </a>
+            <p class="role">{{ .Site.Params.role }}</p>
+            <p class="organization">{{ .Site.Params.organization }}</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> {{ .Site.Params.location }}</p>
+            
+            <div class="social-links">
+                {{ range .Site.Params.social }}
+                <a href="{{ .url }}" target="_blank" aria-label="{{ .name }}">
+                    {{ if eq .pack "ai" }}
+                    <i class="ai ai-{{ .icon }}"></i>
+                    {{ else }}
+                    <i class="{{ .pack | default "fab" }} fa-{{ .icon }}"></i>
+                    {{ end }} 
+                    {{ .name }}
+                </a>
+                <span>|</span>
+                {{ end }}
+                <!-- Removing the last separator with CSS is cleaner, but this is simple -->
+            </div>
+            
+            <div class="sidebar-nav">
+                <ul>
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <!-- CV Download Button example -->
+            <a href="cv.pdf" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Download CV</a>
+        </div>
+    </aside>

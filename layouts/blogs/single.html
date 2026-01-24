@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "head.html" . }}
+<style>
+    /* Blog specific styles - scoped overrides */
+    
+    /* 
+       Layout Strategy:
+       On Large Screens: 3-Column Grid [ Empty/Back | Content | TOC ]
+       This ensures Content is perfectly centered in viewport, and TOC hangs on the right.
+       On Small Screens: Stacked Layout
+    */
+
+    /* Default (Mobile/Tablet) */
+    .blog-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    .main-content {
+        padding: 120px 20px;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .toc-sidebar {
+        display: none; /* Hidden on mobile by default */
+    }
+    
+    /* Back Button: Default absolute/fixed for mobile */
+    .back-btn-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 100;
+    }
+
+    /* Fixed/Floating Button Style */
+    .fixed-back-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        color: #555;
+    }
+    .fixed-back-btn:hover {
+        background: var(--primary-color);
+        color: #fff;
+        transform: scale(1.1);
+        border-color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    /* Large Screen Layout */
+    @media (min-width: 1200px) {
+        .blog-container {
+            /* Reset to block for fixed positioning strategy */
+            display: block;
+            margin: 0 auto;
+            max-width: 900px; /* Center content container */
+            padding: 0;
+            overflow: visible; /* Allow fixed elements to be seen */
+        }
+        
+        /* Floating Back Button (Fixed Position) */
+        .back-btn-container {
+            position: fixed;
+            top: 150px; /* Fixed vertical position */
+            left: calc(50vw - 450px - 150px); /* Center - Half Content - Offset */
+            width: auto;
+            margin: 0;
+            padding: 0;
+            z-index: 1000;
+        }
+
+        .main-content {
+            margin: 0 auto;
+            max-width: 100%; /* Fill the 900px container */
+            padding: 120px 0; /* Vertical padding only */
+        }
+
+        /* Floating TOC (Fixed Position) */
+        .toc-sidebar {
+            display: block;
+            position: fixed;
+            top: 150px; /* Align with back button */
+            left: calc(50vw + 450px + 60px); /* Center + Half Content + Offset */
+            width: 250px;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            margin: 0;
+            padding: 0;
+            z-index: 1000;
+        }
+    }
+    
+    .blog-article {
+        /* Content internal width */
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .blog-header {
+        margin-bottom: 40px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+    .blog-title {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        color: #000;
+    }
+    .blog-meta {
+        color: #666;
+        font-size: 0.95rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+    }
+    .blog-meta > span {
+        display: flex;
+        align-items: center;
+    }
+    .tag-badge {
+        display: inline-block;
+        background: #f0f0f0;
+        padding: 2px 10px;
+        border-radius: 12px;
+        color: #666;
+        font-size: 0.85rem;
+        margin-left: 5px;
+    }
+    .blog-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #222;
+    }
+    .blog-content h2 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+    .blog-content h3 {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .blog-content p {
+        margin-bottom: 20px;
+    }
+    .blog-content ul, .blog-content ol {
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+    .blog-content code {
+        background: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+        font-size: 0.9em;
+    }
+    .blog-content pre {
+        background: #f4f4f4;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        margin-bottom: 0; /* Reset margin as wrapper checks it */
+    }
+    /* Code block wrapper and copy button */
+    .code-block-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .copy-code-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 0.85rem;
+        color: #666;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s, color 0.2s;
+    }
+    .code-block-wrapper:hover .copy-code-btn {
+        opacity: 1;
+    }
+    .blog-content pre code {
+        background: none;
+        padding: 0;
+        color: #333;
+    }
+    .blog-content blockquote {
+        border-left: 4px solid #0066cc;
+        margin: 0 0 20px 0;
+        padding: 10px 20px;
+        background: #f9f9f9;
+        color: #555;
+        font-style: italic;
+    }
+    .blog-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    
+    /* Footnotes styling */
+    .blog-content .footnotes {
+        margin-top: 80px;
+        padding-top: 30px;
+        border-top: 1px solid #eaeaea;
+        font-size: 0.9rem;
+        color: #666;
+    }
+    /* Hide the default hr if preferred, or style it */
+    .blog-content .footnotes hr {
+        display: none; 
+    }
+    
+    /* Superscript citation styling [1] */
+    .blog-content sup {
+        top: -0.5em;
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
+    .blog-content sup a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    .blog-content sup a::before {
+        content: "[";
+    }
+    .blog-content sup a::after {
+        content: "]";
+    }
+
+    /* Highlight style (==text==) */
+    mark {
+        background-color: #fff2a8;
+        color: #333;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+
+    .back-nav {
+        margin-bottom: 40px;
+    }
+    .back-nav a {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .back-nav a:hover {
+        text-decoration: underline;
+    }
+    
+    .repost-section {
+        margin-top: 60px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+    }
+
+    /* TOC Sidebar Styles - Moved to top for better cascade management */
+    .toc-content h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: #999;
+        letter-spacing: 1px;
+    }
+    .toc-content nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .toc-content nav ul ul {
+        padding-left: 15px;
+    }
+    .toc-content nav li {
+        margin-bottom: 6px;
+    }
+    .toc-content nav a {
+        color: #666;
+        text-decoration: none;
+        display: block;
+        line-height: 1.4;
+        transition: color 0.2s;
+    }
+    .toc-content nav a:hover {
+        color: var(--primary-color);
+    }
+    
+    @media (min-width: 1200px) {
+        /* .toc-sidebar logic moved to grid above */
+    }
+</style>
+<body>
+
+<div class="container blog-container">
+    <!-- Left Column: Back Button -->
+    <div class="back-btn-container">
+        <a href="/blogs/" class="fixed-back-btn" title="Back to Blogs">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- Center Column: Main Content -->
+    <main class="main-content">
+        <!-- Navigation back to Home (only visible on mobile or if needed, usually sidebar handles nav) -->
+        <!-- <nav class="back-nav">
+            <a href="/"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </nav> -->
+
+        <article class="blog-article">
+            <header class="blog-header">
+                <h1 class="blog-title">{{ .Title }}</h1>
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt" style="margin-right: 6px;"></i> {{ .Date.Format "January 2, 2006" }}</span>
+                    {{ if .Params.tags }}
+                    <span class="blog-tags-wrapper">
+                        <i class="fas fa-tags" style="margin-right: 6px;"></i>
+                        {{ range .Params.tags }}
+                        <span class="tag-badge">#{{ . }}</span>
+                        {{ end }}
+                    </span>
+                    {{ end }}
+                </div>
+            </header>
+
+            <div class="blog-content">
+                {{ .Content }}
+            </div>
+
+            <!-- Repost/Share Section -->
+            <div class="repost-section">
+                <h4 style="margin-top: 0; margin-bottom: 15px; font-size: 1.1rem;">Share this post</h4>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="copyLink()" class="btn" style="cursor: pointer; padding: 8px 15px; background: white; border: 1px solid #ccc; border-radius: 4px; color: #333; font-size: 0.9rem;">
+                        <i class="fas fa-link"></i> Copy Link
+                    </button>
+                    <a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank" style="padding: 8px 15px; background: #000; border: 1px solid #000; border-radius: 4px; color: white; text-decoration: none; font-size: 0.9rem;">
+                        <i class="fa-brands fa-x-twitter"></i> Post
+                    </a>
+                    <a href="mailto:?subject={{ .Title }}&body=Check out this url: {{ .Permalink }}" target="_blank" style="padding: 8px 15px; background: #666; border: 1px solid #666; border-radius: 4px; color: white; text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+                <p id="copy-success" style="color: #28a745; font-size: 0.9rem; margin-top: 10px; margin-bottom: 0; display: none;">
+                    <i class="fas fa-check-circle"></i> Link copied to clipboard!
+                </p>
+            </div>
+        </article>
+
+        <footer style="margin-top: 60px; text-align: center; color: #999; font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 20px;">
+            <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.name }}</p>
+        </footer>
+    </main>
+
+    <!-- Right Sidebar for TOC -->
+    <aside class="toc-sidebar">
+        {{ if .TableOfContents }}
+        <div class="toc-content">
+            <h4>On this page</h4>
+            {{ .TableOfContents }}
+        </div>
+        {{ end }}
+    </aside>
+</div>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        const successMsg = document.getElementById('copy-success');
+        successMsg.style.display = 'block';
+        setTimeout(() => {
+            successMsg.style.display = 'none';
+        }, 3000);
+    });
+}
+
+// Add copy buttons to code blocks
+// Run immediately (not waited for DOMContentLoaded) to ensure text replacement happens BEFORE KaTeX rendering
+(function() {
+    // 1. Double equals highlighting (==text==)
+    const content = document.querySelector('.blog-content');
+    if (content) {
+        const traverse = (node) => {
+            if (node.nodeType === 3) { // Text node
+                const text = node.nodeValue;
+                // Regex to match ==text== allowing single '=' inside but stopping at double '=='
+                const regex = /==((?:[^=]|=(?!=))+)==/g; 
+                if (regex.test(text)) {
+                    // Check if inside protected tags (Code, Math, Script)
+                    let p = node.parentNode;
+                    const protectedTags = ['CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG'];
+                    while (p && p !== content) {
+                        if (protectedTags.includes(p.tagName)) return;
+                        if (p.classList && (p.classList.contains('katex') || p.classList.contains('math'))) return;
+                        p = p.parentNode;
+                    }
+                    
+                    const fragment = document.createDocumentFragment();
+                    let lastIdx = 0;
+                    text.replace(regex, (match, p1, offset) => {
+                        if (offset > lastIdx) {
+                            fragment.appendChild(document.createTextNode(text.substring(lastIdx, offset)));
+                        }
+                        const mark = document.createElement('mark');
+                        mark.innerHTML = p1; // Use innerHTML to allow potential HTML-like content if any, though usually text
+                        fragment.appendChild(mark);
+                        lastIdx = offset + match.length;
+                    });
+                    if (lastIdx < text.length) {
+                        fragment.appendChild(document.createTextNode(text.substring(lastIdx)));
+                    }
+                    node.parentNode.replaceChild(fragment, node);
+                }
+            } else if (node.nodeType === 1) { // Element node
+                const protectedTags = ['CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG', 'IMG'];
+                if (protectedTags.includes(node.tagName)) return;
+                if (node.classList.contains('katex')) return; // Skip if already rendered by KaTeX
+                Array.from(node.childNodes).forEach(traverse);
+            }
+        };
+        traverse(content);
+    }
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 2. Syntax Copy Button
+    const preTags = document.querySelectorAll('.blog-content pre');
+    
+    preTags.forEach(pre => {
+        // Create wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        wrapper.style.position = 'relative';
+        
+        // Wrap pre
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+        
+        // Create button
+        const button = document.createElement('button');
+        button.className = 'copy-code-btn';
+        button.innerHTML = '<i class="far fa-copy"></i>';
+        button.title = "Copy code";
+        
+        // Copy functionality
+        button.addEventListener('click', () => {
+            const code = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.color = '#28a745';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="far fa-copy"></i>';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+            });
+        });
+        
+        wrapper.appendChild(button);
+    });
+});
+</script>
+
+</body>
+</html>

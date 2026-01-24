@@ -3,6 +3,21 @@ languageCode = 'zh-cn'
 title = 'Zhidong Zhang'
 theme = []
 
+[markup]
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [['$$', '$$'], ['\\[', '\\]']]
+      inline = [['$', '$'], ['\\(', '\\)']]
+
+  [markup.highlight]
+    style = "friendly"
+    noClasses = true
+    guessSyntax = true
+
+[permalinks]
+  blogs = "/blogs/:title/"
+
 [params]
   name = "Zhang Zhidong"
   role = "M.Sc Student in Computational Neuroscience"
@@ -39,16 +54,21 @@ theme = []
   [[menu.main]]
     identifier = "highlights"
     name = "Highlights"
-    url = "#highlights"
+    url = "/#highlights"
     weight = 1
   [[menu.main]]
     identifier = "publications"
     name = "Publications"
-    url = "#publications"
+    url = "/#publications"
     weight = 3
   [[menu.main]]
     identifier = "projects"
     name = "Projects"
-    url = "#projects"
+    url = "/#projects"
     weight = 4
+  [[menu.main]]
+    identifier = "blogs"
+    name = "Blogs"
+    url = "/blogs/"
+    weight = 5
 
