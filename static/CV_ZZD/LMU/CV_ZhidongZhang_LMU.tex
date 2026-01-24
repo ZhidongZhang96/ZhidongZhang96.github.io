@@ -1,0 +1,311 @@
+% !TEX pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+% \usepackage[empty]{fullpage}
+\usepackage{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}   % 颜色
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{enumitem}  % 列表环境
+\usepackage[hidelinks]{hyperref}  % 超链接
+\usepackage[english]{babel}
+\usepackage{tabularx}  % 表格环境
+\usepackage{fontawesome5}
+\usepackage{fancyhdr} % 自定义页眉和页脚
+\usepackage{lipsum}
+\usepackage{lastpage} % 显示页数
+
+
+\input{glyphtounicode}
+
+% -------------------- FONT OPTIONS --------------------
+% sans-serif
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% serif
+\usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+% \fancyfoot[C]{\thepage \hspace{1pt} of \pageref{LastPage}} % 页数
+\renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+\definecolor{Linkblue}{RGB}{34, 100, 155}
+
+
+% Adjust margins 页边距
+
+\usepackage[paper=a4paper, left=0.5in, right=0.5in, top=0.4in, bottom=0in]{geometry}
+
+% \newgeometry{top=-1in}
+
+% \addtolength{\oddsidemargin}{-0.5in}
+% \addtolength{\evensidemargin}{-0.5in}
+% \addtolength{\textwidth}{1in}
+% \addtolength{\topmargin}{-0.5in} % Default was -.5in
+% \addtolength{\textheight}{1.0in}
+
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Subsection formatting
+\titleformat{\subsection}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{\hspace{-.15in}}{0em}{}[\color{black}\vspace{-8pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+
+
+% -------------------- CUSTOM COMMANDS --------------------
+
+\newcommand{\link}[2]{\href{#1}{\textcolor{Linkblue}{\textbf{#2}}}}
+
+\newcommand{\resumeItem}[1]{
+  \item{
+    {\normalsize#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{#2} \\
+      {#3} & {#4}\\ 
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\educationSubheading}[5]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1}{#2} & \textit{#3} \\
+      \textit{#4} & {#5}\\ 
+    \end{tabular*}\vspace{-7pt}
+}
+
+% \newcommand{\resumeSubSubheading}[2]{
+%     \item
+%     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+%       \textit{\small#1} & \textit{\small #2} \\
+%     \end{tabular*}\vspace{-7pt}
+% }
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+       #1 & \textit{#2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+% \newcommand{\resumeHonors}[2]{
+%     \begin{tabular*}{0.93\textwidth}{l@{\extracolsep{\fill}}r}
+%       #1 & \textit{#2} \\
+%     \end{tabular*}
+% }
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubHeadingListStart}{\vspace{0pt}\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\setlength{\headheight}{14pt}
+\setlength{\footskip}{20pt}
+\addtolength{\topmargin}{-14pt}
+
+% -------------------- START OF DOCUMENT --------------------
+\begin{document}
+\pagenumbering{arabic}
+
+% -------------------- HEADING--------------------
+
+
+
+% \vspace{-50pt}
+
+\begin{center}
+    \textbf{\Huge \textsc Zhidong Zhang} \\ \vspace{8pt}
+    % Wuhan University, Wuhan, China, 430072 \\ \vspace{8pt}
+    \small 
+    % 电话
+    \faIcon{phone}
+    {(+86)173-0715-0670} $  $
+    % 邮箱
+    \faIcon{envelope}
+    \link{mailto:zhidong.zhang@whu.edu.cn}{zhidong.zhang@whu.edu.cn}  $  $
+    % 个人网站
+    \faIcon{globe}
+    \link{https://zhidongzhang.cn}{zhidongzhang.cn} $  $
+    % Github
+    \faIcon{github}
+    \link{https://github.com/Antony-Zhang}{Antony-Zhang}$  $
+    % 领英
+    % \faIcon{linkedin}
+    % \href{https://linkedin.com/in/mattydoe}{\underline{linkedin.com/in/mattydoe}} $  $
+\end{center}
+
+
+% -------------------- EDUCATION --------------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \educationSubheading
+      {Wuhan University}{, Wuhan, China}{09/2021 -- 06/2025 (Expected)}{Bachelor of Engineering}{GPA: 3.73/4.00}
+      % {B.Eng. Software Engineering}{GPA: 3.73/4.00} %  (88.93/100)
+    % \vspace{-1pt}
+
+    \resumeItemListStart
+      % \resumeItem{\textbf{GPA:} 3.73/4.00}
+      \resumeItem{\textbf{Major:} Software Engineering}
+      \resumeItem{\textbf{Courses:} Data Structures, Computer Organization, Operating Systems, Machine Learning, Database Systems, Discrete Mathematics, Linear Algebra, Probability \& Statistics, Cognitive Psychology, etc.}
+    \resumeItemListEnd
+    % \subsection{Coursework}
+      % \textbf{Courses:} Data Structures, Computer Organization, Operating Syustems, Machine Learning, Database Systems, Discrete Mathematics, Linear Algebra, Probability \& Statistics, Cognitive Psychology, etc.
+      % \textbf{honors:} 2021 Excellent Student Scholarship Third-class Reward (Top 25\% of 700 students)
+      
+    \vspace{-2pt}
+    \educationSubheading
+    {Sun Yat-sen Memorial Middle School}{, Zhongshan, China}{09/2018 -- 06/2021}{High School}{NEMT: 658/750}
+    \resumeSubHeadingListEnd
+    \vspace{-9pt}
+  % \vspace{-15pt}
+
+
+% -------------------- RESEARCH EXPERIENCE --------------------
+\section{Research Experience}
+    \resumeSubHeadingListStart
+        
+		\resumeProjectHeading{\textbf{RNN Analysis on Same-Different Task}}{09/2024 -- 11/2024}
+		\resumeProjectHeading
+		{Chinese University of Hong Kong \(|\) Advisor: Dr. Xiangbin Teng}{Remote}
+		\resumeItemListStart
+			\resumeItem{\textbf{Model Training:} Trained RNNs on the same-different task under varying noise levels by neurogym, optiomizing the code for readability and extensibility.}
+			\resumeItem{\textbf{Model Analysis:} Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope.}
+		\resumeItemListEnd
+
+    \resumeProjectHeading{\textbf{Large Model Based Crossmodal Chinese Poetry Creation}}{07/2024 -- 10/2024}
+    \resumeProjectHeading
+    {Wuhan University \(|\) Advisor: Dr. Weiping Zhu}{Wuhan, China}
+    \resumeItemListStart
+        \resumeItem{\textbf{System Development:} Led the development of modules supporting cross-modal text and image inputs by miniGPT-4 and CLIP, enhancing iterative optimization mechanisms.}
+        \resumeItem{\textbf{System Evaluation:} Evaluated poem quality across different input modalities, and the effect of optimization on three poem sets.}
+    \resumeItemListEnd
+    
+    \resumeProjectHeading
+    {\textbf{Data Analysis on Forward-Flow Task}}{04/2024 -- 06/2024}
+    \resumeProjectHeading
+    {Beijing Normal University \(|\) Advisor: Prof. Yunzhe Liu}{Remote}
+    \resumeItemListStart
+        \resumeItem{\textbf{Data Prepocessing:} Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings.}
+        \resumeItem{\textbf{Correlation Analysis:} Analyzed the correlation between participants' scale scores and statistical indicators, including sequence length, embedding similarity, optimality divergence, semantic distance range, and "forward flow".}
+    \resumeItemListEnd  
+    \resumeSubHeadingListEnd
+
+
+% -------------------- Project Experience --------------------
+\section{Project Experience}
+    \resumeSubHeadingListStart
+
+        \resumeProjectHeading
+        {\textbf{The Working Memory Capacity of RNN models}}{07/2024 -- 08/2024}
+        \resumeProjectHeading
+        {Computational Neuroscience Program, Neuromatch Academy}{}
+        \resumeItemListStart
+            \resumeItem{\textbf{Memory Decoding:} Built a neural network to decode firing rates into previous inputs, computing correlations to assess the WM capacity of RNN models.}
+            \resumeItem{\textbf{Parameter Exploration:} Led the exploration of effects of parameter simulating biological factors and interactions on WM capacity.}
+        \resumeItemListEnd
+		
+        % \resumeProjectHeading
+        % {\textbf{LLM-based Interactive Chinese Poetry Learning Assistant}}{Sep.2023 - Oct.2023}
+        % \resumeProjectHeading
+        % {2023 Large Models Scene Innovation Competition - Innovation Award (Top 8\%)}{}
+        % \resumeItemListStart
+        %     \resumeItem{\textbf{Interface Design:} Designed the web interface and user-specific prompts for image production and text interaction.}
+        %     \resumeItem{\textbf{Module Development:} Developed modules incorporating online search and file analysis based on Retrieval-Augmented Generation (RAG).}
+        % \resumeItemListEnd
+        
+    \resumeSubHeadingListEnd
+
+% \newpage
+% {\hspace{1in}}
+% -------------------- PUBLICATIONS --------------------
+\section{Publications}
+    \hspace{10pt}\textit{*Equally authorship} 
+    \vspace{-5pt}
+    \begin{itemize}[leftmargin=0.15in, label={}]
+        \item L. Yang*, \textbf{Z. Zhang}*, S. Liu, X. Dai, D. Zhou, and D. Cui, “Large Model Based Crossmodal Chinese Poetry Creation”, in 2024 IEEE Smart World Congress (SWC), accepted.
+    \end{itemize}
+    \vspace{-13pt}
+    
+% % -------------------- Extracurricular Activity --------------------
+% \section{Extracurricular Activity}   
+
+% -------------------- HONORS & AWARDS --------------------
+\section{Honors \& Awards}
+    \vspace{2pt}
+    \begin{itemize}[leftmargin=0.15in, label={}] 
+    \item 2021 Excellent Student Scholarship Third-class Reward (1,000 CNY) \\
+    \vspace{-4pt}
+    \item 2021 Excellent Student Cadre \\
+    \vspace{-4pt}
+    \item 2021 Advanced Individual of Social Work
+    %     \begin{itemize}[itemsep=-1pt]
+    %       \item 2021 Excellent Student Scholarship Third-class Reward (Top 25\% of 700 students)
+    % %         \item  \resumeHonors{LLM Scene Innovation Competition-Innovation Award (Top 8\% of 600 teams)}{2023}
+    % %         % \vspace{2pt}
+    % %         \item  \resumeHonors{Excellent Student Scholarship Third-class Reward (Top 25\% of 700 students)}{2021}
+    %       \item  2021 Excellent Student Cadre
+    %       \item  2021 Advanced Individual of Social Work
+    %     \end{itemize}
+    \end{itemize}
+    \vspace{-15pt}
+
+% -------------------- SKILLS --------------------
+\section{Skills}
+    \vspace{2pt}
+    \begin{itemize}[leftmargin=0.15in, label={}]
+    \item \textbf{Data Analysis}: Machine Learning, Deep Learning, EEG processing, Digital signal processing \\
+    \vspace{-4pt}
+    \item \textbf{Programming}: Python, C/C++\\
+    \vspace{-4pt}
+    \item \textbf{Tools}{: Unix Shell, Git/GitHub, E-prime, Zotero}  \\
+    \vspace{-4pt}
+    \item \textbf{Language}: English(IELTS 7.0), Mandarin Chinese(native)
+    % \begin{itemize}[itemsep=-1pt]
+    %     \item \textbf{Data Analysis}: Machine Learning, Deep Learning, EEG processing, Digital signal processing \\
+    %     % \vspace{-3pt}
+    %     \item \textbf{Programming}: Python, C/C++\\
+    %     % \vspace{-3pt}
+    %     \item \textbf{Tools}{: Unix Shell, VS Code, Git/GitHub, Zotero}  \\
+    %     % \vspace{-3pt}
+    %     \item \textbf{Language}: English(IELTS 7.0), Mandarin(Native)
+    %  \end{itemize}
+    \end{itemize}
+    \vspace{-30pt}
+
+% 右下角的编辑日期，可用于跟踪版本
+% \rfoot{\color{gray}Last updated on 13 Dec 2024}
+\begin{flushright}
+  \color{gray}
+  \item Last Updated on \today% Dec. 15, 2024
+\end{flushright}
+% \vspace{-30pt}
+% -------------------- END OF DOCUMENT --------------------
+\end{document}
