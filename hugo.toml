@@ -1,4 +1,4 @@
-baseURL = 'https://cv.zhidongzhang.cn/'
+baseURL = 'https://zhidongzhang.cn/'
 languageCode = 'zh-cn'
 title = 'Zhidong Zhang'
 theme = []
