@@ -1,0 +1,70 @@
+- title: "Large Model Based Crossmodal Chinese Poetry Creation"
+  year: "2024-5"
+  note: "Bachelor's thesis under supervision of [Dr. Weiping Zhu](https://cs.whu.edu.cn/info/1019/2920.htm)"
+  description: "Developed a crossmodal poetry generation system using large models, with functions including high-quality poetry generation, analysis and scoring, and optimization. The whole process all provides user-friendly interpretation for better user experience, e.g., allusion annotation and appreciation. The system firstly utilized [CLIP](https://github.com/openai/CLIP?tab=readme-ov-file), [miniGPT4](https://minigpt-4.github.io) and ERNIE (*paper accepted*), and finally swichted to DeepSeek's series models for better performance. "
+  links:
+    - name: "Thesis"
+      url: "files/2021302111480-张志东-基于大模型的跨模态古诗创作.pdf"
+    - name: "Slides"
+      url: "files/毕设答辩-张志东.pdf"
+  badges:
+    - image: "https://custom-icon-badges.demolab.com/badge/Deepseek-4D6BFF?logo=deepseek&logoColor=fff"
+    - image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white"
+
+- title: "RNN Analysis on Same-Different Task"
+  year: "2024"
+  note: "Research Project under supervision of [Dr. Xiangbin Teng](https://www.psy.cuhk.edu.hk/index.php/component/sppagebuilder/?view=page&id=558)"
+  description: "Trained RNNs on the same-different task under varying noise levels by neurogym, optimizing the code for readability and extensibility. Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope."
+  badges:
+    - image: "https://img.shields.io/badge/--red?logo=pytorch&label=PyTorch"
+
+- title: "The Working Memory Capacity of RNN"
+  year: "2024"
+  note: "Course Project for NMA"
+  description: "Explored various effects of parameter settings on the working memory capacity of RNNs."
+  links: 
+    - name: "Example Code"
+      url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view?usp=sharing"
+  badges:
+    - image: "https://img.shields.io/badge/--yellow?logo=googlecolab&label=Colab"
+
+- title: "Data Analysis on Forward Flow Task"
+  year: "2024"
+  note: "Research Project under supervision of [Prof. Yunzhe Liu](https://brain.bnu.edu.cn/kytd/jsyjy/Ljs/18e25c12984e48eb966932924b9b76c7.htm)"
+  description: "Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings. Analyzed the correlation between participants' scale scores and statistical indicators."
+
+- title: "PoetryChat"
+  year: "2024"
+  note: "iFLYTEK AI Developer Competition"
+  description: "An interactive poetry learning assistant based on LLM for different ages supports different chatting styles, oneline search, RAG, and image generation."
+  links:
+    - name: "Code"
+      url: "https://github.com/ZhidongZhang96/PoetryChat"
+  badges:
+    - image: "https://img.shields.io/badge/LangChain-1c3c3c.svg?logo=langchain&logoColor=white"
+    - image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white"
+    - image: "https://img.shields.io/badge/--yellow?logo=huggingface&label=huggingface"
+    
+# - title: "Awesome AI Project"
+#   year: "2023"
+#   role: "Lead Developer"
+#   description: "Developed a new framework for AI. Used PyTorch and TensorFlow."
+#   links:
+#     - name: "Demo"
+#       url: "#"
+#     - name: "GitHub"
+#       url: "https://github.com"
+#   badges:
+#     - name: "Python"
+#       icon: "fab fa-python"
+#     - name: "PyTorch"
+#       icon: "fas fa-fire"
+
+# - title: "Student Management System"
+#   year: "2022"
+#   role: "Contributor"
+#   description: "A simple system to manage students."
+#   links: []
+#   badges:
+#     - name: "Java"
+#       icon: "fab fa-java"

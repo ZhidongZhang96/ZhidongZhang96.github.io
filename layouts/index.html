@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <!-- Load FontAwesome free (v6.5.1 for X-Twitter icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Load Academicons (for Google Scholar etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
+    <style>
+        /* Embed critical CSS or specific overrides here if needed */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="profile-container">
+            {{ if .Site.Params.avatar }}
+            <img src="{{ .Site.Params.avatar | relURL }}" alt="Avatar" class="avatar">
+            {{ else }}
+            <div class="avatar-placeholder"></div>
+            {{ end }}
+            
+            <h1 class="name">{{ .Site.Params.name }}</h1>
+            <p class="role">{{ .Site.Params.role }}</p>
+            <p class="organization">{{ .Site.Params.organization }}</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> {{ .Site.Params.location }}</p>
+            
+            <div class="social-links">
+                {{ range .Site.Params.social }}
+                <a href="{{ .url }}" target="_blank" aria-label="{{ .name }}">
+                    {{ if eq .pack "ai" }}
+                    <i class="ai ai-{{ .icon }}"></i>
+                    {{ else }}
+                    <i class="{{ .pack | default "fab" }} fa-{{ .icon }}"></i>
+                    {{ end }} 
+                    {{ .name }}
+                </a>
+                <span>|</span>
+                {{ end }}
+                <!-- Removing the last separator with CSS is cleaner, but this is simple -->
+            </div>
+            
+            <div class="sidebar-nav">
+                <ul>
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <!-- CV Download Button example -->
+            <a href="cv.pdf" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Download CV</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- About Section (from _index.md) -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="content-text">
+                {{ .Content }}
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        {{ if .Site.Data.highlights }}
+        <section id="highlights">
+            <h2 class="section-title">Highlights</h2>
+            <div class="highlights-list">
+                {{ range .Site.Data.highlights }}
+                <div class="highlight-item">
+                    <span class="date">{{ .date }}</span>
+                    <span class="description">
+                        {{ if .url }}
+                        <a href="{{ .url }}" target="_blank">{{ .description | markdownify }}</a>
+                        {{ else }}
+                        {{ .description | markdownify }}
+                        {{ end }}
+                    </span>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+
+        <!-- Publications Section -->
+        {{ if .Site.Data.publications }}
+        <section id="publications">
+            <h2 class="section-title">Publications</h2>
+            <div class="publications-list">
+                {{ range .Site.Data.publications }}
+                <div class="publication-item">
+                    <h3 class="pub-title">{{ .title }}</h3>
+                    <p class="pub-authors">{{ .authors | markdownify }}</p>
+                    <p class="pub-venue">{{ .venue }}, {{ .year }}</p>
+                    <div class="pub-links">
+                        {{ range .links }}
+                        <a href="{{ .url }}" class="badge badge-{{ .type }}">{{ .name }}</a>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+
+        <!-- Projects Section -->
+        {{ if .Site.Data.projects }}
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-list">
+                {{ range .Site.Data.projects }}
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-title">{{ .title }}</h3>
+                    </div>
+                    <div class="project-note">
+                        {{ .note | markdownify | replaceRE "^<p>" "" | replaceRE "</p>\n?$" "" | safeHTML }}, {{ .year }}
+                    </div>
+                    <p class="project-desc">{{ .description | markdownify }}</p>
+                    <div class="project-links">
+                        {{ range .links }}
+                        <a href="{{ .url }}" class="badge">{{ .name }}</a>
+                        {{ end }}
+                    </div>
+                    {{ if .badges }}
+                    <div class="project-badges">
+                        {{ range .badges }}
+                            {{ if .image }}
+                            <img src="{{ .image }}" alt="badge" class="badge-img">
+                            {{ else }}
+                            <span class="tech-badge"><i class="{{ .icon }}"></i> {{ .name }}</span>
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+
+        <footer class="footer">
+            <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.name }}. Theme inspired by simple academic pages.</p>
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>
