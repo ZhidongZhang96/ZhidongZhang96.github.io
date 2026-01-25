@@ -1,74 +1,97 @@
-# 学术主页模板
+# Zhidong Zhang - Personal Academic Website
 
-这是一个基于 [Hugo](https://gohugo.io/) 的简约学术主页模板。
-设计参考了简约风格，旨在提供清晰的信息展示和便捷的内容管理。
+这是一个基于 Hugo 构建的学术个人主页。
+本指南将帮助你快速定位并修改网站的各个部分。
 
-## 目录结构
+## 🚀 快速开始
 
-*   `hugo.toml`: **站点配置文件**。在这里修改你的名字、头衔、社交链接、头像路径等。
-*   `content/_index.md`: **关于我 (About)** 部分的文字内容。支持 Markdown。
-*   `data/`: **数据文件夹**。用于管理列表项，格式为 YAML (简单易读)。
-    *   `highlights.yml`: 重要动态/新闻。
-    *   `publications.yml`: 发表的论文列表。
-    *   `projects.yml`: 项目经历。
-*   `static/images/`: 存放图片的文件夹。请将你的头像 (如 `avatar.jpg`) 放在这里。
-
-## 如何使用
-
-### 1. 本地预览
-
-在终端中运行以下命令启动本地服务器：
+在终端运行：
 
 ```bash
 hugo server
 ```
 
-然后打开浏览器访问 `http://localhost:1313/`。
-当你修改文件时，网页会自动刷新。
+打开浏览器访问 `http://localhost:1313/` 即可预览。修改文件后通常会自动刷新。
 
-### 2. 修改内容
+---
 
-#### 基本信息 & 侧边栏
-打开 `hugo.toml`，修改 `[params]` 下的内容：
-```toml
-name = "你的名字"
-role = "博士生"
-# ...
-[[params.social]]
-  name = "GitHub"
-  url = "..."
+## 📝 内容修改指南
+
+网站的内容由 **配置文件** (`.toml`)、**内容文件** (`.md`) 和 **数据文件** (`.yml`) 共同驱动。
+
+### 1. 个人基本信息 (Sidebar)
+**文件**: [`hugo.toml`](hugo.toml)
+这是网站的核心配置文件。
+
+*   **姓名与头衔**: 修改 `[params]` 下的 `name`, `role`, `organization`, `location`。
+*   **头像**:
+    1.  将你的照片放入 [`static/images/`](static/images/) 文件夹。
+    2.  修改 `hugo.toml` 中的 `avatar` 路径 (例如: `avatar = "images/真人头像.jpg"`).
+*   **社交链接**: 修改 `[[params.social]]` 部分。你可以添加 GitHub, LinkedIn, Twitter, Email 等。
+
+### 2. "About Me" 简介
+**文件**: [`content/_index.md`](content/_index.md)
+*   这是首页中间的自我介绍部分。
+*   使用标准 Markdown 语法编写。
+
+### 3. 最新动态 (Highlights)
+**文件**: [`data/highlights.yml`](data/highlights.yml)
+*   以列表形式存储新闻动态。
+*   **格式**:
+    ```yaml
+    - date: "2025-10-01"
+      description: "新闻描述..."
+      url: "可选的外部链接"
+    ```
+
+### 4. 论文发表 (Publications)
+**文件**: [`data/publications.yml`](data/publications.yml)
+*   展示你的学术成果。每篇论文是一个列表项。
+*   **格式**:
+    ```yaml
+    - title: "论文标题"
+      authors: "**Zhidong Zhang**, Co-author Name"  # 使用 ** ** 加粗你的名字
+      venue: "会议/期刊名称 (SWC 2024)"
+      year: 2024
+      links:
+        - name: "DOI"
+          url: "https://doi.org/..."
+        - name: "PDF"
+          url: "files/paper.pdf" # 将PDF文件放在 static/files/ 目录下
+    ```
+
+### 5. 项目经历 (Projects)
+**文件**: [`data/projects.yml`](data/projects.yml)
+*   展示科研或工程项目。
+*   支持 `badges` (徽章) 和 `links` (项目链接/Slides)。
+
+### 6. 博客文章 (Blogs)
+**目录**: [`content/blogs/`](content/blogs/)
+*   **新建文章**: 建议复制该目录下现有的 `.md` 文件作为模板。
+*   **Front Matter (头部元数据)**:
+    ```yaml
+    ---
+    title: "文章标题"
+    date: 2026-01-25
+    tags: ["Category1", "Category2"]
+    slug: "可选的URL别名, 默认为title的小写连字符形式"
+    ---
+    ```
+    正文在 `---` 之后。
+
+## 📂 文件结构速查
+
+```text
+├── hugo.toml            # 核心配置 (头像、侧边栏、菜单)
+├── content/
+│   ├── _index.md        # 首页介绍主文本
+│   └── blogs/           # 博客文章内容
+├── data/
+│   ├── highlights.yml   # 动态数据
+│   ├── publications.yml # 论文数据
+│   └── projects.yml     # 项目数据
+├── static/
+│   ├── images/          # 图片静态资源
+│   └── files/           # 附件 (如 PDF)
+└── layouts/             # HTML 结构模版 (高阶修改)
 ```
-
-#### 个人简介
-打开 `content/_index.md`，像写文档一样编写你的简介。
-
-#### 论文列表
-打开 `data/publications.yml`，按照现有格式添加新的论文：
-```yaml
-- title: "论文标题"
-  authors: "**你的名字**, 作者二, 作者三"
-  venue: "会议名称 (CVPR 2024)"
-  year: 2024
-  links:
-    - name: "PDF"
-      url: "你的PDF链接"
-      type: "primary"
-```
-
-#### 动态 & 项目
-同样地，编辑 `data/highlights.yml` 和 `data/projects.yml`。
-
-### 3. 发布 (Build)
-
-运行命令生成静态文件：
-
-```bash
-hugo
-```
-
-生成的网页文件会在 `public/` 目录下。你可以将该目录的内容上传 to GitHub Pages 或其他托管服务。
-
-## 自定义样式
-
-如果你懂 CSS，可以在 `static/css/style.css` 中修改样式。
-布局文件位于 `layouts/index.html`。
