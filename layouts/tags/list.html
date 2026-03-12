@@ -8,11 +8,21 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        
-        <section id="blogs">
-            <h2 class="section-title">Blogs (non-academic)</h2>
+        <section id="tag-page">
+            <div style="margin-bottom: 30px;">
+                <!-- <h2 class="section-title">标签: {{ .Title }}</h2> -->
+                <h2 class="section-title">Blogs (non-academic)</h2>
+                <!-- <p style="color: #666; margin-bottom: 20px;">
+                    {{ len .Pages }} blogs with tag #{{ .Title }} 
+                </p> -->
+                <div style="margin-bottom: 25px;">
+                    <a href="/blogs/" style="color: #666; text-decoration: none; font-size: 0.9rem;">
+                        ← Return to all blogs
+                    </a>
+                </div>
+            </div>
+            
             <div class="blogs-list">
-                <!-- Use .Pages here since this is a list layout for the section -->
                 {{ range .Pages }}
                 <div class="blog-item" style="margin-bottom: 25px;">
                     <div class="blog-header" style="display: flex; justify-content: space-between; align-items: baseline;">
@@ -28,7 +38,7 @@
                     {{ if .Params.tags }}
                     <div class="blog-tags" style="font-size: 0.8rem;">
                         {{ range .Params.tags }}
-                        <a href="{{ printf "/tags/%s/" (. | urlize) }}" style="display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 12px; color: #666; margin-right: 5px; margin-bottom: 5px; text-decoration: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='#f0f0f0'">#{{ . }}</a>
+                        <a href="{{ printf "/tags/%s/" (. | urlize) }}" style="display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 12px; color: #666; margin-right: 5px; margin-bottom: 5px; text-decoration: none; transition: background-color 0.2s;{{ if eq . $.Title }} font-weight: bold; background: #d4edda;{{ end }}" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='{{ if eq . $.Title }}#d4edda{{ else }}#f0f0f0{{ end }}'">#{{ . }}</a>
                         {{ end }}
                     </div>
                     {{ end }}

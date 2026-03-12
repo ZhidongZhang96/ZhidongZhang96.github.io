@@ -341,7 +341,7 @@
                     <span class="blog-tags-wrapper">
                         <i class="fas fa-tags" style="margin-right: 6px;"></i>
                         {{ range .Params.tags }}
-                        <span class="tag-badge">#{{ . }}</span>
+                        <a href="{{ printf "/tags/%s/" (. | urlize) }}" class="tag-badge" style="text-decoration: none; color: inherit;">#{{ . }}</a>
                         {{ end }}
                     </span>
                     {{ end }}
