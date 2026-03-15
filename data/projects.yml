@@ -86,7 +86,7 @@
 - title: "Exam Master"
   year: "2022"
   note: "Course Project for Primary Project Practice (Teamwork)"
-  description: "A Roguelike game asking players to explore the rooms, fight monsters and earn gold coins as as to 'pass the exam'. Inspired by *Crypt of the NecroDancer*, the player can only move and attack to the rhythm of the background music. Developed using Unity and C#. *(tbh how to play the game has nothing to do with eaxm, just some funny concepts mapping of freshmen)*"
+  description: "A Roguelike game asking players to explore the rooms, fight monsters and earn gold coins as as to 'pass the exam'. Inspired by *Crypt of the NecroDancer*, the player can only move and attack to the rhythm of the background music. Developed using Unity and C#. *(tbh how to play the game has nothing to do with exam, just some funny concepts mapping of freshmen)*"
   links:
     - name: "Slides"
       url: "files/“考试达人”.pdf"
