@@ -6,7 +6,6 @@ date: 2026-01-14
 # url: "/hello"        -> 生成 /hello/ (完全自定义)
 description: "Personal notes about the connection between eigenvectors and eigenfunctions in linear algebra and calculus."
 tags: ["Math"]
-math: true
 ---
 
 ## 1 Function as a vector

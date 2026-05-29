@@ -8,8 +8,7 @@
     <!-- Load Academicons (for Google Scholar etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
     
-    <!-- KaTeX Support -->
-    {{ if .Params.math }}
+    <!-- KaTeX Support (always on) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
@@ -18,7 +17,6 @@
             {left: '$', right: '$', display: false}
         ]
     });"></script>
-    {{ end }}
 
     <style>
         /* Embed critical CSS or specific overrides here if needed */

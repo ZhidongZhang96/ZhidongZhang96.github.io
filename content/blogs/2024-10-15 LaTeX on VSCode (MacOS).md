@@ -7,7 +7,6 @@ slug: "latex-on-vscode-macos" # -> 生成 /blogs/hello-world/
 # url: "/blogs/demo-post"
 description: "My first try on configuring LaTeX on VSCode on MacOS."
 tags: ["LaTeX"]
-math: true
 ---
 
 The first try on configuring LaTeX on VSCode on MacOS.
