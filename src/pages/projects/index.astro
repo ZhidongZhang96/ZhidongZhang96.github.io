@@ -1,89 +1,159 @@
 ---
-import ProjectCard from "@/components/projects/ProjectCard.astro";
 import PageLayout from "@/layouts/Base.astro";
 
-type ProjectItem = {
-	astroIcon?: string;
-	description: string;
-	href: string;
-	icon?: string;
-	title: string;
-};
+interface ProjectLink {
+	name: string;
+	url: string;
+}
 
-type ProjectGroup = {
-	projects: ProjectItem[];
+interface ProjectBadge {
+	image: string;
+}
+
+interface ProjectItem {
 	title: string;
-};
+	year: string;
+	note?: string;
+	description: string;
+	links?: ProjectLink[];
+	badges?: ProjectBadge[];
+}
+
+interface ProjectGroup {
+	title: string;
+	projects: ProjectItem[];
+}
 
 const projectGroups: ProjectGroup[] = [
 	{
-		title: "Core Stack",
+		title: "Research",
 		projects: [
 			{
-				astroIcon: "mdi:rocket-launch",
-				title: "Astro",
-				href: "https://github.com/withastro/astro",
+				title: "Large Model Based Crossmodal Chinese Poetry Creation",
+				year: "2024-2025",
+				note: "Bachelor's thesis under supervision of Dr. Weiping Zhu",
 				description:
-					"The official Astro framework repository. Typefolio is built on Astro's content-first architecture, routing, integrations, and static output pipeline.",
+					"Developed a crossmodal poetry generation system using large models, with functions including high-quality poetry generation, analysis and scoring, and optimization. The system firstly utilized CLIP, miniGPT4 and ERNIE, and finally switched to DeepSeek's series models for better performance.",
+				links: [
+					{ name: "Thesis", url: "/files/bachelor-thesis.pdf" },
+					{ name: "Slides", url: "/files/slides-bachelor-thesis.pdf" },
+				],
+				badges: [
+					{ image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white" },
+					{ image: "https://custom-icon-badges.demolab.com/badge/Deepseek-4D6BFF?logo=deepseek&logoColor=fff" },
+				],
 			},
 			{
-				astroIcon: "mdi:tailwind",
-				title: "Tailwind CSS",
-				href: "https://github.com/tailwindlabs/tailwindcss",
+				title: "RNN Analysis on Same-Different Task",
+				year: "2024",
+				note: "Research project under supervision of Dr. Xiangbin Teng",
 				description:
-					"The official Tailwind CSS repository. This theme uses Tailwind CSS v4 for utility styling, typography defaults, and layout composition.",
+					"Trained RNNs on the same-different task under varying noise levels by neurogym, optimizing the code for readability and extensibility. Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope.",
+				badges: [
+					{ image: "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white" },
+					{ image: "https://img.shields.io/badge/NumPy-4DABCF?logo=numpy&logoColor=fff" },
+				],
 			},
 			{
-				icon: "✅",
-				title: "Biome",
-				href: "https://github.com/biomejs/biome",
+				title: "Data Analysis on Forward Flow Task",
+				year: "2024",
+				note: "Research project under supervision of Prof. Yunzhe Liu",
 				description:
-					"The official Biome repository. It keeps the project formatting and code quality checks consistent through the shared `pnpm check` workflow.",
+					"Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings. Analyzed the correlation between participants' scale scores and statistical indicators.",
+				badges: [
+					{ image: "https://img.shields.io/badge/NumPy-4DABCF?logo=numpy&logoColor=fff" },
+					{ image: "https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white" },
+				],
 			},
 		],
 	},
 	{
-		title: "Content & Site Tooling",
+		title: "Projects",
 		projects: [
 			{
-				astroIcon: "mdi:magnify",
-				title: "Pagefind",
-				href: "https://github.com/Pagefind/pagefind",
+				title: "PoetryChat",
+				year: "2023",
+				note: "iFLYTEK AI Developer Competition",
 				description:
-					"The official Pagefind repository. Typefolio uses it to generate the static search index after production builds.",
+					"An interactive poetry learning assistant based on LLM for different ages, supporting different chatting styles, online search, RAG, and image generation.",
+				links: [
+					{ name: "Code", url: "https://github.com/ZhidongZhang96/PoetryChat" },
+				],
+				badges: [
+					{ image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white" },
+					{ image: "https://img.shields.io/badge/LangChain-1c3c3c.svg?logo=langchain&logoColor=white" },
+					{ image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white" },
+				],
 			},
 			{
-				icon: "😀",
-				title: "Astro Icon",
-				href: "https://github.com/natemoo-re/astro-icon",
+				title: "Paper Classification Based on Abstracts",
+				year: "2023",
+				note: "Course project for Commercial Intelligence",
 				description:
-					"The official Astro Icon repository. It powers inline icons throughout the theme, including UI accents and feature-level visual markers.",
-			},
-			{
-				icon: "🖼️",
-				title: "Satori",
-				href: "https://github.com/vercel/satori",
-				description:
-					"The official Satori repository. It is used for generating social preview images and other image-based metadata in the Astro pipeline.",
+					"Implemented paper classification based on abstracts using BERT models. (My first project about machine learning!)",
+				badges: [
+					{ image: "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white" },
+					{ image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white" },
+				],
 			},
 		],
 	},
 	{
-		title: "Acknowledgments",
+		title: "Course Projects",
 		projects: [
 			{
-				icon: "📄",
-				title: "Typefolio",
-				href: "https://github.com/whliao5am/astro-theme-typefolio",
+				title: "The Working Memory Capacity of RNN",
+				year: "2024",
+				note: "Course project for Neuromatch Academy 2024",
 				description:
-					"This repository itself. It brings together the stack above into a typography-first Astro theme for writing, galleries, and project pages.",
+					"Explored various effects of parameter settings on the working memory capacity of RNNs.",
+				links: [
+					{ name: "Example Code", url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view" },
+				],
+				badges: [
+					{ image: "https://img.shields.io/badge/Google%20Colab-F9AB00?logo=googlecolab&logoColor=fff" },
+				],
 			},
 			{
-				icon: "🌵",
-				title: "Astro Theme Cactus",
-				href: "https://github.com/chrismwilliams/astro-theme-cactus",
+				title: "Ruyi Mirror",
+				year: "2023",
+				note: "Course project for Human-Computer Interaction",
 				description:
-					"The main upstream inspiration for this project. This card is here as a visible thank-you for the original design direction, structure, and implementation ideas.",
+					"Designed and implemented a demo for a virtual application, a magical mirror that can analyze the skin, provide recommendations, and keep track of skin conditions daily. Ruyi (如意) means 'as you wish' in Chinese.",
+				links: [
+					{ name: "Demo", url: "https://modao.cc/proto/0X3fP4o7t9dj2sCtnxuJqB/sharing?view_mode=device&screen=rbpTvpkt29ZmGnIv8" },
+				],
+				badges: [
+					{ image: "https://img.shields.io/badge/墨刀-EB483F?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cGF0aCBkPSJNMzIgMEM0LjggMCAwIDQuOCAwIDMydjMyYzAgMjcuMiA0LjggMzIgMzIgMzJoMzJjMjcuMiAwIDMyLTQuOCAzMi0zMlYzMmMwLTI3LjItNC44LTMyLTMyLTMyaC0zMnoiIGZpbGw9IiNFQjQ4M0YiLz48cGF0aCBkPSJNNDggMjRMNDAgMTZIMjRMMTYgMjR2MTZsOCA4aDE2bDgtOHYtMTZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" },
+				],
+			},
+			{
+				title: "Sport-Record",
+				year: "2023",
+				note: "Course project for Mobile Application Development",
+				description:
+					"A demo app for recording sports data, including user management, sport data recording, and simple statistics. Developed using Swift and SwiftUI, with data persistence handled by SQLite.",
+				links: [
+					{ name: "Code", url: "https://github.com/ZhidongZhang96/Sport-Record" },
+				],
+				badges: [
+					{ image: "https://img.shields.io/badge/Swift-F54A2A?logo=swift&logoColor=white" },
+					{ image: "https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white" },
+				],
+			},
+			{
+				title: "Exam Master",
+				year: "2022",
+				note: "Course project for Primary Project Practice (Teamwork)",
+				description:
+					"A Roguelike game asking players to explore rooms, fight monsters, and earn gold coins to 'pass the exam'. Inspired by Crypt of the NecroDancer, the player can only move and attack to the rhythm of the background music. Developed using Unity and C#.",
+				links: [
+					{ name: "Slides", url: "/files/exam-master.pdf" },
+				],
+				badges: [
+					{ image: "https://custom-icon-badges.demolab.com/badge/C%23-%23239120.svg?logo=cshrp&logoColor=white" },
+					{ image: "https://img.shields.io/badge/Unity-%23000000.svg?logo=unity&logoColor=white" },
+				],
 			},
 		],
 	},
@@ -91,7 +161,7 @@ const projectGroups: ProjectGroup[] = [
 
 const meta = {
 	title: "Projects",
-	description: "Official repositories and acknowledgments behind Typefolio.",
+	description: "Projects and research work by Zhidong Zhang.",
 };
 ---
 
@@ -100,11 +170,11 @@ const meta = {
 		<div>
 			<h1 class="title mb-4">Projects</h1>
 			<p>
-				This page highlights the repositories behind Typefolio. It serves as both a quick showcase and a visible note of thanks.
+				A selection of projects I have worked on during my studies and research.
 			</p>
 		</div>
 
-		<div class="grid gap-4">
+		<div class="grid gap-8">
 			{
 				projectGroups.map((group) => (
 					<section
@@ -117,23 +187,57 @@ const meta = {
 						>
 							{group.title}
 						</h2>
-						<ul class="m-0 grid list-none gap-4 p-0 md:grid-cols-2" role="list">
+						<div class="m-0 grid list-none gap-4 p-0 md:grid-cols-2" role="list">
 							{group.projects.map((project) => (
-								<li class="m-0">
-									<ProjectCard {...project} />
-								</li>
+								<article class="project-card p-4">
+									<div class="project-card-heading mb-2">
+										<h3 class="project-card-title text-base font-semibold">
+											{project.title}
+										</h3>
+										<span class="text-xs text-gray-500 dark:text-gray-400">
+											{project.year}
+										</span>
+									</div>
+									{project.note && (
+										<p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
+											{project.note}
+										</p>
+									)}
+									<p class="project-card-description mb-3 text-sm">
+										{project.description}
+									</p>
+									{project.links && project.links.length > 0 && (
+										<div class="mb-2 flex flex-wrap gap-x-3 gap-y-1">
+											{project.links.map((link) => (
+												<a
+													class="text-xs font-medium typefolio-link-lighter"
+													href={link.url}
+													rel="noreferrer noopener"
+													target="_blank"
+												>
+													[{link.name}]
+												</a>
+											))}
+										</div>
+									)}
+									{project.badges && project.badges.length > 0 && (
+										<div class="flex flex-wrap gap-1">
+											{project.badges.map((badge) => (
+												<img
+													class="inline-block"
+													src={badge.image}
+													alt=""
+													loading="lazy"
+												/>
+											))}
+										</div>
+									)}
+								</article>
 							))}
-						</ul>
+						</div>
 					</section>
 				))
 			}
 		</div>
-
-		<p class="mt-6">
-      Some projects live on, while others have fulfilled their purpose. 🕯️
-    <a class="typefolio-link-lighter" href="/projects/archive/">
-      View archived projects <span aria-hidden="true">→</span>
-    </a>
-  </p>
 	</section>
 </PageLayout>

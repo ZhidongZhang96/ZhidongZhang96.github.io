@@ -2,9 +2,7 @@ import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
 import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
-	author: "Wenhao Liao",
-	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
+	author: "Zhidong Zhang",
 	date: {
 		locale: "en-GB",
 		options: {
@@ -13,60 +11,32 @@ export const siteConfig: SiteConfig = {
 			year: "numeric",
 		},
 	},
-	// Used as the default description meta property and webmanifest description
-	description: "A professional and elegant astro theme.",
-	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
-	lang: "en-GB",
-	// Meta property, found in src/components/BaseHead.astro L:42
-	ogLocale: "en_GB",
-	/*
-		- Used to construct the meta title property found in src/components/BaseHead.astro L:11
-		- The webmanifest name found in astro.config.ts L:42
-		- The link value found in src/components/layout/Header.astro L:35
-		- In the footer found in src/components/layout/Footer.astro L:12
-	*/
-	title: "Astro Typefolio",
-	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
-	url: "https://astro-typefolio.whliao.me/",
+	description: "M.Sc Student in Computational Neuroscience at University of Tübingen",
+	lang: "zh-CN",
+	ogLocale: "zh_CN",
+	title: "Zhidong Zhang",
+	url: "https://zhidongzhang.cn",
 };
 
 export const giscusConfig = {
-	category: "Announcements",
-	categoryId: "DIC_kwDORe2yqc4C3uHi",
-	repo: "whliao5am/astro-theme-typefolio-giscus",
-	repoId: "R_kgDORe2yqQ",
+	category: "",
+	categoryId: "",
+	repo: "",
+	repoId: "",
 } as const;
 
-// Toggle comment providers display without removing integration code.
 export const commentDisplayConfig = {
-	giscus: true,
+	giscus: false,
 } as const;
 
-// Used to generate links in both the Header & Footer.
 export const menuLinks: { path: string; title: string }[] = [
-	{
-		path: "/",
-		title: "Home",
-	},
-	{
-		path: "/about/",
-		title: "About",
-	},
-	{
-		path: "/blog/",
-		title: "Blog",
-	},
-	{
-		path: "/projects/",
-		title: "Projects",
-	},
-	{
-		path: "/gallery/",
-		title: "Gallery",
-	},
+	{ path: "/", title: "Home" },
+	{ path: "/about/", title: "About" },
+	{ path: "/blog/", title: "Blog" },
+	{ path: "/projects/", title: "Projects" },
+	{ path: "/gallery/", title: "Gallery" },
 ];
 
-// https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 	styleOverrides: {
 		borderRadius: "4px",
@@ -83,17 +53,13 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		uiLineHeight: "1.55",
 	},
 	themeCssSelector(theme, { styleVariants }) {
-		// If one dark and one light theme are available
-		// generate theme CSS selectors compatible with typefolio-theme dark mode switch
 		if (styleVariants.length >= 2) {
 			const baseTheme = styleVariants[0]?.theme;
 			const altTheme = styleVariants.find((v) => v.theme.type !== baseTheme?.type)?.theme;
 			if (theme === baseTheme || theme === altTheme) return `[data-theme='${theme.type}']`;
 		}
-		// return default selector
 		return `[data-theme="${theme.name}"]`;
 	},
-	// One dark, one light theme => https://expressive-code.com/guides/themes/#available-themes
 	themes: ["github-dark", "github-light"],
 	useThemedScrollbars: false,
 };

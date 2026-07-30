@@ -16,7 +16,7 @@ const allPostsByDate = allPosts.sort(
 	collectionDateSort,
 ) as CollectionEntry<"blog">[];
 
-// Pinned Posts, set to a max of 3;
+// Pinned Posts, set to a max of 5;
 const MAX_PINNED_POSTS = 5;
 const pinnedPosts = allPostsByDate
 	.filter((p) => p.data.pinned)
@@ -24,40 +24,58 @@ const pinnedPosts = allPostsByDate
 
 const whatsNewItems: WhatsNewItem[] = [
 	{
-		date: "Mar 2026",
+		date: "Oct 2025",
 		kind: "milestone",
 		label: "Milestone",
 		description:
-			"Published the official v1 positioning pass so the homepage, About page, and public copy present Typefolio as a polished personal publishing template.",
+			"Began my Master's in Computational Neuroscience at University of Tübingen.",
+		href: "https://www.neuroschool-tuebingen.de/master/computational-neuroscience/",
 	},
 	{
-		date: "Feb 2026",
-		kind: "service",
-		label: "Service",
+		date: "Jun 2025",
+		kind: "milestone",
+		label: "Milestone",
 		description:
-			"Launched a fictional research commons that curates reading groups, annotated archives, and public datasets for a distributed digital humanities cohort.",
+			"Graduated in B.Eng Software Engineering from Wuhan University.",
 	},
 	{
-		date: "Jan 2026",
+		date: "Dec 2024",
 		kind: "paper",
 		label: "Paper",
 		description:
-			"Released an imaginary preprint on annotation-first scholarly publishing, outlining how structured marginalia can improve long-form academic reading online.",
-		href: "/blog/markdown-elements/",
+			"Paper on Large Model Based Crossmodal Chinese Poetry Creation presented at IEEE SWC 2024.",
+		href: "https://doi.org/10.1109/SWC62898.2024.00034",
 	},
 	{
-		date: "Dec 2025",
+		date: "Jul 2024",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Completed summer school at Neuromatch Academy.",
+		href: "https://portal.neuromatchacademy.org/certificate/d83ba21d-39f6-4a09-a00f-15e6efa22bcd",
+	},
+	{
+		date: "Oct 2023",
 		kind: "talk",
 		label: "Talk",
 		description:
-			"Delivered a mock keynote on humane research workflows, focusing on small-scale knowledge graphs, reproducible publishing, and calmer seminar preparation.",
+			"Invited to iFLYTEK 1024 Global Developer Festival.",
+		href: "https://1024.iflytek.com",
 	},
 	{
-		date: "Nov 2025",
+		date: "Sep 2022",
 		kind: "award",
 		label: "Award",
 		description:
-			"Received a fictional society prize for public scholarship, recognizing an open archive project that translates specialist research into accessible essays.",
+			"Awarded Third-class Scholarship in Software Engineering.",
+	},
+	{
+		date: "Sep 2021",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Began my Bachelor's in Software Engineering at Wuhan University.",
+		href: "https://cs.whu.edu.cn",
 	},
 ];
 ---
@@ -67,38 +85,54 @@ const whatsNewItems: WhatsNewItem[] = [
 		<div class="flex items-center gap-4">
 			<Image
 				priority
-				alt="Portrait of Adrian Vale"
+				alt="Portrait of Zhidong Zhang"
 				class="h-20 w-20 rounded-full object-cover"
 				height={320}
 				src="/assets/avatar.png"
 				width={320}
 			/>
 			<div>
-				<h1 class="text-accent-2 text-xl font-semibold wrap-break-word">Adrian Vale</h1>
-				<div>Independent researcher and technical writer, 2022-present.</div>
-				<div>
-					North Coast Institute for Applied Systems
-				</div>
-				<div>
-					Harbor City School of Computing
-				</div>
+				<h1 class="text-accent-2 text-xl font-semibold wrap-break-word">Zhidong Zhang</h1>
+				<div>M.Sc Student in Computational Neuroscience</div>
+				<div>University of Tübingen</div>
 			</div>
 		</div>
 		<hr class="index-divider mt-4" />
 		<div class="mt-4">
 			<p>
-				Typefolio is a professional, elegant, static-fast Astro template for
-				researchers and developers who want a focused place for writing,
-				projects, galleries, and release updates. It keeps the entry surface concise
-				so visitors understand the template quickly without wading through a
-				starter-kit checklist.
+				I am passionate about the intersection of artificial intelligence and
+				neuroscience. While still exploring my research interests, I am particularly
+				drawn to neural dynamics, memory mechanisms, and brain-inspired AI.
 			</p>
-			<p>
-				Find me on
+			<p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
 				<InlineIconLink
-					href="https://github.com/whliao5am/astro-theme-typefolio"
+					href="https://github.com/ZhidongZhang96"
 					icon="mdi:github"
-					label="GitHub repository"
+					label="GitHub"
+					width="2em"
+					height="2em"
+					target="_blank"
+				/>
+				<InlineIconLink
+					href="https://www.linkedin.com/in/zhidong-zhang-292b48341/"
+					icon="mdi:linkedin"
+					label="LinkedIn"
+					width="2em"
+					height="2em"
+					target="_blank"
+				/>
+				<InlineIconLink
+					href="https://x.com/Eastos_"
+					icon="mdi:twitter"
+					label="Twitter / X"
+					width="2em"
+					height="2em"
+					target="_blank"
+				/>
+				<InlineIconLink
+					href="mailto:zhidong-zhang@outlook.com"
+					icon="mdi:email"
+					label="Email"
 					width="2em"
 					height="2em"
 					target="_blank"
@@ -133,31 +167,14 @@ const whatsNewItems: WhatsNewItem[] = [
 	<WhatsNewTimeline items={whatsNewItems} />
 
 	<section class="mt-8">
-		<h2 class="title mb-4 text-xl">Selected Manuscripts</h2>
+		<h2 class="title mb-4 text-xl">Publications</h2>
 		<div class="space-y-2">
 			<p>
-				[1] M. Rowan, <span class="font-semibold">A. Vale</span>, T. Mercer, I. Solis, and K.
-				Hart, "LanternGraph: Interpretable Workflow Tracing for Collaborative
-				Knowledge Systems," <em>Journal of Applied Digital Practices</em>,
-				vol. 8, no. 2, pp. 101-119, 2025.
-				<a class="font-medium typefolio-link-lighter" href="#">[paper]</a>
-				<a class="font-medium typefolio-link-lighter" href="#">[website]</a>
-				<a class="font-medium typefolio-link-lighter" href="#">[data]</a>
-				<a class="font-medium typefolio-link-lighter" href="#">[pipeline]</a>
-				<a class="font-medium typefolio-link-lighter" href="#">[model]</a>
-				<a class="font-medium typefolio-link-lighter" href="#">[blog]</a>
-			</p>
-			<p>
-				[2] <span class="font-semibold">A. Vale</span>, R. Quinn, and P. Ibarra, "Quiet Signals:
-				Summarizing Research Activity Streams for Reflective Review," in
-				<em>Proceedings of the Symposium on Humane Computing</em>,
-				pp. 55-68, 2024.
-				<a class="font-medium typefolio-link-lighter" href="#">[paper]</a>
-			</p>
-			<p>
-				[3] <span class="font-semibold">A. Vale</span>, "Field Notes for Small-Scale Personal
-				Knowledge Infrastructures," <em>Open Archive Preprints</em>, 2023.
-				<a class="font-medium typefolio-link-lighter" href="#">[paper]</a>
+				[1] Liwen Yang*, <span class="font-semibold">Zhidong Zhang*</span>, Kaipeng Niu,
+				Sitian Pan, Weiping Zhu, Chao Ma, "Large Model Based Crossmodal Chinese
+				Poetry Creation," <em>IEEE Smart World Congress (SWC)</em>, 2024.
+				<a class="font-medium typefolio-link-lighter" href="https://doi.org/10.1109/SWC62898.2024.00034">[DOI]</a>
+				<a class="font-medium typefolio-link-lighter" href="/files/slides1.pdf">[Slides]</a>
 			</p>
 		</div>
 	</section>

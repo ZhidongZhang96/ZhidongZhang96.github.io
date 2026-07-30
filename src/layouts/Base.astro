@@ -65,10 +65,40 @@ const {
 				const mainEl = document.getElementById("main");
 				if (mainEl) pangu.spacingNode(mainEl);
 			};
+
+			/* Handle ==highlight==: convert ==text== to <mark>text</mark> */
+			const applyHighlights = () => {
+				const mainEl = document.getElementById("main");
+				if (!mainEl) return;
+				const walker = document.createTreeWalker(mainEl, NodeFilter.SHOW_TEXT);
+				const nodesToReplace: { node: Text; text: string }[] = [];
+				while (walker.nextNode()) {
+					const node = walker.currentNode as Text;
+					if (node.textContent && /==.+?==/.test(node.textContent)) {
+						nodesToReplace.push({ node, text: node.textContent });
+					}
+				}
+				for (const { node, text } of nodesToReplace) {
+					const fragment = document.createDocumentFragment();
+					const parts = text.split(/(==.+?==)/g);
+					for (const part of parts) {
+						if (part.startsWith("==") && part.endsWith("==") && part.length > 4) {
+							const mark = document.createElement("mark");
+							mark.textContent = part.slice(2, -2);
+							fragment.appendChild(mark);
+						} else {
+							fragment.appendChild(document.createTextNode(part));
+						}
+					}
+					node.parentNode?.replaceChild(fragment, node);
+				}
+			};
+
 			const onPageLoad = () => {
 				ensureSpeculationRules();
 				pangu.autoSpacingPage();
 				applyPanguToMain();
+				applyHighlights();
 			};
 
 			const shouldUseNativeNavigation = (anchor: HTMLAnchorElement, event: MouseEvent) => {
