@@ -1,0 +1,33 @@
+---
+import Search from "@/components/Search.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { menuLinks } from "@/site.config";
+import { siteConfig } from "../../site.config";
+---
+
+<header class="mb-9 flex items-center">
+	<div class="flex flex-col items-start">
+		<a
+			aria-current={Astro.url.pathname === "/" ? "page" : false}
+			class="inline-flex items-center text-left"
+			href="/"
+		>
+			<span class="site-title-highlight text-xl font-bold sm:text-2xl">[{siteConfig.title}]</span>
+		</a>
+		<nav aria-label="Main menu" class="mt-1 flex flex-row flex-wrap text-left" id="navigation-menu">
+			{
+				menuLinks.map((link) => (
+					<a
+						aria-current={Astro.url.pathname === link.path ? "page" : false}
+						class="text-accent py-1 pe-4 font-semibold first:ps-0 sm:underline-offset-2 sm:hover:underline"
+						href={link.path}
+					>
+						<span class="text-gray-400 dark:text-gray-600">./</span>{link.title}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+	<Search />
+	<ThemeToggle />
+</header>

@@ -1,0 +1,164 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import type { WhatsNewItem } from "@/components/home/WhatsNewTimeline.astro";
+import WhatsNewTimeline from "@/components/home/WhatsNewTimeline.astro";
+import InlineIconLink from "@/components/InlineIconLink.astro";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+// Posts
+const allPosts = await getAllPosts();
+const allPostsByDate = allPosts.sort(
+	collectionDateSort,
+) as CollectionEntry<"blog">[];
+
+// Pinned Posts, set to a max of 3;
+const MAX_PINNED_POSTS = 5;
+const pinnedPosts = allPostsByDate
+	.filter((p) => p.data.pinned)
+	.slice(0, MAX_PINNED_POSTS);
+
+const whatsNewItems: WhatsNewItem[] = [
+	{
+		date: "Mar 2026",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Published the official v1 positioning pass so the homepage, About page, and public copy present Typefolio as a polished personal publishing template.",
+	},
+	{
+		date: "Feb 2026",
+		kind: "service",
+		label: "Service",
+		description:
+			"Launched a fictional research commons that curates reading groups, annotated archives, and public datasets for a distributed digital humanities cohort.",
+	},
+	{
+		date: "Jan 2026",
+		kind: "paper",
+		label: "Paper",
+		description:
+			"Released an imaginary preprint on annotation-first scholarly publishing, outlining how structured marginalia can improve long-form academic reading online.",
+		href: "/blog/markdown-elements/",
+	},
+	{
+		date: "Dec 2025",
+		kind: "talk",
+		label: "Talk",
+		description:
+			"Delivered a mock keynote on humane research workflows, focusing on small-scale knowledge graphs, reproducible publishing, and calmer seminar preparation.",
+	},
+	{
+		date: "Nov 2025",
+		kind: "award",
+		label: "Award",
+		description:
+			"Received a fictional society prize for public scholarship, recognizing an open archive project that translates specialist research into accessible essays.",
+	},
+];
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<section class="index-content">
+		<div class="flex items-center gap-4">
+			<Image
+				priority
+				alt="Portrait of Adrian Vale"
+				class="h-20 w-20 rounded-full object-cover"
+				height={320}
+				src="/assets/avatar.png"
+				width={320}
+			/>
+			<div>
+				<h1 class="text-accent-2 text-xl font-semibold wrap-break-word">Adrian Vale</h1>
+				<div>Independent researcher and technical writer, 2022-present.</div>
+				<div>
+					North Coast Institute for Applied Systems
+				</div>
+				<div>
+					Harbor City School of Computing
+				</div>
+			</div>
+		</div>
+		<hr class="index-divider mt-4" />
+		<div class="mt-4">
+			<p>
+				Typefolio is a professional, elegant, static-fast Astro template for
+				researchers and developers who want a focused place for writing,
+				projects, galleries, and release updates. It keeps the entry surface concise
+				so visitors understand the template quickly without wading through a
+				starter-kit checklist.
+			</p>
+			<p>
+				Find me on
+				<InlineIconLink
+					href="https://github.com/whliao5am/astro-theme-typefolio"
+					icon="mdi:github"
+					label="GitHub repository"
+					width="2em"
+					height="2em"
+					target="_blank"
+				/>
+			</p>
+		</div>
+	</section>
+
+	{
+		pinnedPosts.length > 0 && (
+			<section class="mt-8">
+				<h2 class="title mb-4 flex items-center gap-2 text-xl">
+					Pinned Posts
+					<Icon
+						aria-hidden="true"
+						class="text-accent h-5 w-5 rotate-45"
+						focusable="false"
+						name="mdi:pin-outline"
+					/>
+				</h2>
+				<ul class="space-y-1" role="list">
+					{pinnedPosts.map((p) => (
+						<li class="grid sm:grid-cols-[auto_1fr]">
+							<PostPreview post={p} />
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
+
+	<WhatsNewTimeline items={whatsNewItems} />
+
+	<section class="mt-8">
+		<h2 class="title mb-4 text-xl">Selected Manuscripts</h2>
+		<div class="space-y-2">
+			<p>
+				[1] M. Rowan, <span class="font-semibold">A. Vale</span>, T. Mercer, I. Solis, and K.
+				Hart, "LanternGraph: Interpretable Workflow Tracing for Collaborative
+				Knowledge Systems," <em>Journal of Applied Digital Practices</em>,
+				vol. 8, no. 2, pp. 101-119, 2025.
+				<a class="font-medium typefolio-link-lighter" href="#">[paper]</a>
+				<a class="font-medium typefolio-link-lighter" href="#">[website]</a>
+				<a class="font-medium typefolio-link-lighter" href="#">[data]</a>
+				<a class="font-medium typefolio-link-lighter" href="#">[pipeline]</a>
+				<a class="font-medium typefolio-link-lighter" href="#">[model]</a>
+				<a class="font-medium typefolio-link-lighter" href="#">[blog]</a>
+			</p>
+			<p>
+				[2] <span class="font-semibold">A. Vale</span>, R. Quinn, and P. Ibarra, "Quiet Signals:
+				Summarizing Research Activity Streams for Reflective Review," in
+				<em>Proceedings of the Symposium on Humane Computing</em>,
+				pp. 55-68, 2024.
+				<a class="font-medium typefolio-link-lighter" href="#">[paper]</a>
+			</p>
+			<p>
+				[3] <span class="font-semibold">A. Vale</span>, "Field Notes for Small-Scale Personal
+				Knowledge Infrastructures," <em>Open Archive Preprints</em>, 2023.
+				<a class="font-medium typefolio-link-lighter" href="#">[paper]</a>
+			</p>
+		</div>
+	</section>
+</PageLayout>
