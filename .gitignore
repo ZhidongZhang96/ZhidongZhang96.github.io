@@ -36,3 +36,5 @@ Desktop.ini
 npm-debug.log*
 
 CV_ZZD/
+
+.claude/
