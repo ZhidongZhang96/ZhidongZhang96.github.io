@@ -1,5 +1,5 @@
 ---
-title: "随笔 | 门前泥泞路"
+title: "门前泥泞路"
 description: "门前泥泞路，一步步"
 publishDate: 2025-08-29
 tags: ["essay"]

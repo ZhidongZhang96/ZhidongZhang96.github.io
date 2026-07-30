@@ -6,156 +6,65 @@ interface ProjectLink {
 	url: string;
 }
 
-interface ProjectBadge {
-	image: string;
-}
-
 interface ProjectItem {
 	title: string;
-	year: string;
+	date: string;
 	note?: string;
 	description: string;
 	links?: ProjectLink[];
-	badges?: ProjectBadge[];
 }
 
-interface ProjectGroup {
-	title: string;
-	projects: ProjectItem[];
-}
-
-const projectGroups: ProjectGroup[] = [
+/* ── Research experience (timeline) ── */
+const researchProjects: ProjectItem[] = [
 	{
-		title: "Research",
-		projects: [
+		title: "Large Model Based Crossmodal Chinese Poetry Creation",
+		date: "2024–2025",
+		note: "Bachelor's thesis under supervision of Dr. Weiping Zhu",
+		description:
+			"Developed a crossmodal poetry generation system using large models, with functions including high-quality poetry generation, analysis and scoring, and optimization. The system firstly utilized CLIP, miniGPT4 and ERNIE, and finally switched to DeepSeek's series models for better performance.",
+		links: [
+			{ name: "Thesis", url: "/files/bachelor-thesis.pdf" },
+			{ name: "Slides", url: "/files/slides-bachelor-thesis.pdf" },
+		],
+	},
+	{
+		title: "RNN Analysis on Same-Different Task",
+		date: "2024",
+		note: "Research project under supervision of Dr. Xiangbin Teng",
+		description:
+			"Trained RNNs on the same-different task under varying noise levels by neurogym, optimizing the code for readability and extensibility. Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope.",
+	},
+	{
+		title: "Data Analysis on Forward Flow Task",
+		date: "2024",
+		note: "Research project under supervision of Prof. Yunzhe Liu",
+		description:
+			"Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings. Analyzed the correlation between participants' scale scores and statistical metrics.",
+	},
+];
+
+/* ── Development projects (cards) ── */
+const devProjects: ProjectItem[] = [
+	{
+		title: "The Working Memory Capacity of RNN",
+		date: "2024",
+		note: "Course project for Neuromatch Academy 2024",
+		description:
+			"Explored various effects of parameter settings on the working memory capacity of RNNs.",
+		links: [
 			{
-				title: "Large Model Based Crossmodal Chinese Poetry Creation",
-				year: "2024-2025",
-				note: "Bachelor's thesis under supervision of Dr. Weiping Zhu",
-				description:
-					"Developed a crossmodal poetry generation system using large models, with functions including high-quality poetry generation, analysis and scoring, and optimization. The system firstly utilized CLIP, miniGPT4 and ERNIE, and finally switched to DeepSeek's series models for better performance.",
-				links: [
-					{ name: "Thesis", url: "/files/bachelor-thesis.pdf" },
-					{ name: "Slides", url: "/files/slides-bachelor-thesis.pdf" },
-				],
-				badges: [
-					{ image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white" },
-					{ image: "https://custom-icon-badges.demolab.com/badge/Deepseek-4D6BFF?logo=deepseek&logoColor=fff" },
-				],
-			},
-			{
-				title: "RNN Analysis on Same-Different Task",
-				year: "2024",
-				note: "Research project under supervision of Dr. Xiangbin Teng",
-				description:
-					"Trained RNNs on the same-different task under varying noise levels by neurogym, optimizing the code for readability and extensibility. Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope.",
-				badges: [
-					{ image: "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white" },
-					{ image: "https://img.shields.io/badge/NumPy-4DABCF?logo=numpy&logoColor=fff" },
-				],
-			},
-			{
-				title: "Data Analysis on Forward Flow Task",
-				year: "2024",
-				note: "Research project under supervision of Prof. Yunzhe Liu",
-				description:
-					"Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings. Analyzed the correlation between participants' scale scores and statistical indicators.",
-				badges: [
-					{ image: "https://img.shields.io/badge/NumPy-4DABCF?logo=numpy&logoColor=fff" },
-					{ image: "https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white" },
-				],
+				name: "Example Code",
+				url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view",
 			},
 		],
 	},
 	{
-		title: "Projects",
-		projects: [
-			{
-				title: "PoetryChat",
-				year: "2023",
-				note: "iFLYTEK AI Developer Competition",
-				description:
-					"An interactive poetry learning assistant based on LLM for different ages, supporting different chatting styles, online search, RAG, and image generation.",
-				links: [
-					{ name: "Code", url: "https://github.com/ZhidongZhang96/PoetryChat" },
-				],
-				badges: [
-					{ image: "https://img.shields.io/badge/Gradio-F97316?logo=Gradio&logoColor=white" },
-					{ image: "https://img.shields.io/badge/LangChain-1c3c3c.svg?logo=langchain&logoColor=white" },
-					{ image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white" },
-				],
-			},
-			{
-				title: "Paper Classification Based on Abstracts",
-				year: "2023",
-				note: "Course project for Commercial Intelligence",
-				description:
-					"Implemented paper classification based on abstracts using BERT models. (My first project about machine learning!)",
-				badges: [
-					{ image: "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white" },
-					{ image: "https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=white" },
-				],
-			},
-		],
-	},
-	{
-		title: "Course Projects",
-		projects: [
-			{
-				title: "The Working Memory Capacity of RNN",
-				year: "2024",
-				note: "Course project for Neuromatch Academy 2024",
-				description:
-					"Explored various effects of parameter settings on the working memory capacity of RNNs.",
-				links: [
-					{ name: "Example Code", url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view" },
-				],
-				badges: [
-					{ image: "https://img.shields.io/badge/Google%20Colab-F9AB00?logo=googlecolab&logoColor=fff" },
-				],
-			},
-			{
-				title: "Ruyi Mirror",
-				year: "2023",
-				note: "Course project for Human-Computer Interaction",
-				description:
-					"Designed and implemented a demo for a virtual application, a magical mirror that can analyze the skin, provide recommendations, and keep track of skin conditions daily. Ruyi (如意) means 'as you wish' in Chinese.",
-				links: [
-					{ name: "Demo", url: "https://modao.cc/proto/0X3fP4o7t9dj2sCtnxuJqB/sharing?view_mode=device&screen=rbpTvpkt29ZmGnIv8" },
-				],
-				badges: [
-					{ image: "https://img.shields.io/badge/墨刀-EB483F?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cGF0aCBkPSJNMzIgMEM0LjggMCAwIDQuOCAwIDMydjMyYzAgMjcuMiA0LjggMzIgMzIgMzJoMzJjMjcuMiAwIDMyLTQuOCAzMi0zMlYzMmMwLTI3LjItNC44LTMyLTMyLTMyaC0zMnoiIGZpbGw9IiNFQjQ4M0YiLz48cGF0aCBkPSJNNDggMjRMNDAgMTZIMjRMMTYgMjR2MTZsOCA4aDE2bDgtOHYtMTZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" },
-				],
-			},
-			{
-				title: "Sport-Record",
-				year: "2023",
-				note: "Course project for Mobile Application Development",
-				description:
-					"A demo app for recording sports data, including user management, sport data recording, and simple statistics. Developed using Swift and SwiftUI, with data persistence handled by SQLite.",
-				links: [
-					{ name: "Code", url: "https://github.com/ZhidongZhang96/Sport-Record" },
-				],
-				badges: [
-					{ image: "https://img.shields.io/badge/Swift-F54A2A?logo=swift&logoColor=white" },
-					{ image: "https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white" },
-				],
-			},
-			{
-				title: "Exam Master",
-				year: "2022",
-				note: "Course project for Primary Project Practice (Teamwork)",
-				description:
-					"A Roguelike game asking players to explore rooms, fight monsters, and earn gold coins to 'pass the exam'. Inspired by Crypt of the NecroDancer, the player can only move and attack to the rhythm of the background music. Developed using Unity and C#.",
-				links: [
-					{ name: "Slides", url: "/files/exam-master.pdf" },
-				],
-				badges: [
-					{ image: "https://custom-icon-badges.demolab.com/badge/C%23-%23239120.svg?logo=cshrp&logoColor=white" },
-					{ image: "https://img.shields.io/badge/Unity-%23000000.svg?logo=unity&logoColor=white" },
-				],
-			},
-		],
+		title: "PoetryChat",
+		date: "2023",
+		note: "iFLYTEK AI Developer Competition",
+		description:
+			"An interactive poetry learning assistant based on LLM for different ages, supporting different chatting styles, online search, RAG, and image generation.",
+		links: [{ name: "Code", url: "https://github.com/ZhidongZhang96/PoetryChat" }],
 	},
 ];
 
@@ -169,75 +78,98 @@ const meta = {
 	<section class="index-content grid gap-4">
 		<div>
 			<h1 class="title mb-4">Projects</h1>
-			<p>
-				A selection of projects I have worked on during my studies and research.
-			</p>
+			<p>A selection of projects I have worked on during my studies and research.</p>
 		</div>
 
-		<div class="grid gap-8">
-			{
-				projectGroups.map((group) => (
-					<section
-						class="grid gap-4"
-						aria-labelledby={`projects-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`}
-					>
-						<h2
-							class="title mb-0 text-xl"
-							id={`projects-group-${group.title.toLowerCase().replace(/\s+/g, "-")}`}
-						>
-							{group.title}
-						</h2>
-						<div class="m-0 grid list-none gap-4 p-0 md:grid-cols-2" role="list">
-							{group.projects.map((project) => (
-								<article class="project-card p-4">
-									<div class="project-card-heading mb-2">
-										<h3 class="project-card-title text-base font-semibold">
-											{project.title}
-										</h3>
-										<span class="text-xs text-gray-500 dark:text-gray-400">
-											{project.year}
-										</span>
+		<!-- Research timeline -->
+		<section aria-labelledby="research-heading">
+			<h2 id="research-heading" class="title mb-4 text-xl">Research</h2>
+			<ol class="relative ml-0 space-y-4 pl-0" role="list">
+				{
+					researchProjects.map((project) => (
+						<li class="grid list-none grid-cols-[1rem_minmax(0,1fr)] gap-x-1 gap-y-0 sm:grid-cols-[1.25rem_minmax(0,1fr)]">
+							<div class="relative flex justify-center pt-1">
+								<div
+									aria-hidden="true"
+									class="absolute bottom-0.5 left-1/2 top-1 w-px -translate-x-1/2 bg-gray-300 dark:bg-gray-700"
+								/>
+								<span
+									aria-hidden="true"
+									class="relative mt-1 h-2 w-2 rounded-full bg-gray-500 ring-3 ring-gray-200 dark:bg-gray-600 dark:ring-gray-800"
+								/>
+							</div>
+							<div class="min-w-0">
+								<div class="text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400">
+									{project.date}
+								</div>
+								<div class="text-accent-2 font-semibold">{project.title}</div>
+								{project.note && (
+									<p class="mt-0 text-xs text-gray-500 dark:text-gray-400">{project.note}</p>
+								)}
+								<p class="mt-0 text-sm">{project.description}</p>
+								{project.links && project.links.length > 0 && (
+									<div class="mt-1 flex flex-wrap gap-x-3 gap-y-0">
+										{project.links.map((link) => (
+											<a
+												class="text-xs font-medium typefolio-link-lighter"
+												href={link.url}
+												rel="noreferrer noopener"
+												target="_blank"
+											>
+												[{link.name}]
+											</a>
+										))}
 									</div>
-									{project.note && (
-										<p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
-											{project.note}
-										</p>
-									)}
-									<p class="project-card-description mb-3 text-sm">
-										{project.description}
-									</p>
-									{project.links && project.links.length > 0 && (
-										<div class="mb-2 flex flex-wrap gap-x-3 gap-y-1">
-											{project.links.map((link) => (
-												<a
-													class="text-xs font-medium typefolio-link-lighter"
-													href={link.url}
-													rel="noreferrer noopener"
-													target="_blank"
-												>
-													[{link.name}]
-												</a>
-											))}
-										</div>
-									)}
-									{project.badges && project.badges.length > 0 && (
-										<div class="flex flex-wrap gap-1">
-											{project.badges.map((badge) => (
-												<img
-													class="inline-block"
-													src={badge.image}
-													alt=""
-													loading="lazy"
-												/>
-											))}
-										</div>
-									)}
-								</article>
-							))}
-						</div>
-					</section>
-				))
-			}
-		</div>
+								)}
+							</div>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<!-- Dev projects grid -->
+		<section aria-labelledby="dev-heading">
+			<h2 id="dev-heading" class="title mb-4 text-xl">Projects</h2>
+			<div class="m-0 grid list-none gap-4 p-0 md:grid-cols-2" role="list">
+				{
+					devProjects.map((project) => (
+						<article class="project-card p-4">
+							<div class="project-card-heading mb-2">
+								<h3 class="project-card-title text-base font-semibold">{project.title}</h3>
+								<span class="text-xs text-gray-500 dark:text-gray-400">{project.date}</span>
+							</div>
+							{project.note && (
+								<p class="mb-2 text-xs text-gray-500 dark:text-gray-400">{project.note}</p>
+							)}
+							<p class="project-card-description mb-3 text-sm">{project.description}</p>
+							{project.links && project.links.length > 0 && (
+								<div class="mt-auto flex flex-wrap gap-x-3 gap-y-1">
+									{project.links.map((link) => (
+										<a
+											class="text-xs font-medium typefolio-link-lighter"
+											href={link.url}
+											rel="noreferrer noopener"
+											target="_blank"
+										>
+											[{link.name}]
+										</a>
+									))}
+								</div>
+							)}
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Archive link -->
+		<hr class="index-divider" />
+		<p class="text-sm text-gray-500 dark:text-gray-400">
+			Some projects live on, while others have fulfilled their purpose. 🕯️
+			<a class="font-medium typefolio-link-lighter" href="/projects/archive/">
+				View archived projects <span aria-hidden="true">→</span>
+			</a>
+		</p>
 	</section>
 </PageLayout>

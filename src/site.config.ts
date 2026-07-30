@@ -14,7 +14,7 @@ export const siteConfig: SiteConfig = {
 	description: "M.Sc Student in Computational Neuroscience at University of Tübingen",
 	lang: "zh-CN",
 	ogLocale: "zh_CN",
-	title: "Zhidong Zhang",
+	title: "ZD ZHANG",
 	url: "https://zhidongzhang.cn",
 };
 
@@ -31,7 +31,6 @@ export const commentDisplayConfig = {
 
 export const menuLinks: { path: string; title: string }[] = [
 	{ path: "/", title: "Home" },
-	{ path: "/about/", title: "About" },
 	{ path: "/blog/", title: "Blog" },
 	{ path: "/projects/", title: "Projects" },
 	{ path: "/gallery/", title: "Gallery" },
