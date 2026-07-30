@@ -46,6 +46,19 @@ const researchProjects: ProjectItem[] = [
 /* ── Development projects (cards) ── */
 const devProjects: ProjectItem[] = [
 	{
+		title: "Running-Speed Modulation of Mice's V1 responses ",
+		date: "2026",
+		note: "Course project for 'Neural Data Science",
+		description:
+			"Explored running modulation of mice's V1 responses with the Allen two-photon calcium-imaging dataset.",
+		links: [
+			{
+				name: "Code",
+				url: "https://github.com/ZhidongZhang96/NDS-V1-RunningNaturalMod",
+			},
+		],
+	},
+	{
 		title: "The Working Memory Capacity of RNN",
 		date: "2024",
 		note: "Course project for Neuromatch Academy 2024",
@@ -55,6 +68,10 @@ const devProjects: ProjectItem[] = [
 			{
 				name: "Example Code",
 				url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view",
+			},
+			{
+				name: "Blog",
+				url: "/blog/working-memory-capacity-of-rnn/",
 			},
 		],
 	},
@@ -113,8 +130,8 @@ const meta = {
 											<a
 												class="text-xs font-medium typefolio-link-lighter"
 												href={link.url}
-												rel="noreferrer noopener"
-												target="_blank"
+												rel={link.url.startsWith("http") ? "noreferrer noopener" : undefined}
+												target={link.url.startsWith("http") ? "_blank" : undefined}
 											>
 												[{link.name}]
 											</a>
@@ -149,8 +166,8 @@ const meta = {
 										<a
 											class="text-xs font-medium typefolio-link-lighter"
 											href={link.url}
-											rel="noreferrer noopener"
-											target="_blank"
+											rel={link.url.startsWith("http") ? "noreferrer noopener" : undefined}
+											target={link.url.startsWith("http") ? "_blank" : undefined}
 										>
 											[{link.name}]
 										</a>
