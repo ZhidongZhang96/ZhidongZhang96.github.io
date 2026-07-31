@@ -129,6 +129,7 @@
 
 	.index-content p {
 		line-height: 1.5;
+		text-align: justify;
 	}
 
 	.index-content p + p {
@@ -204,6 +205,7 @@
 	--tw-prose-headings: var(--color-accent-2);
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
+	text-align: justify;
 }
 
 /* Footnotes: compact, smaller, with a hairline divider */

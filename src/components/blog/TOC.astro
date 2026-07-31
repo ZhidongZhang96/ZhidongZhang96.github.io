@@ -12,7 +12,7 @@ const { headings } = Astro.props;
 const toc = generateToc(headings);
 ---
 
-<details open class="lg:sticky lg:top-12 lg:order-2 lg:-me-32 lg:basis-64" data-toc>
+<details open class="xl:sticky xl:top-12 xl:order-2 xl:-me-64 xl:basis-64" data-toc>
 	<summary class="title hover:marker:text-accent cursor-pointer text-lg">Table of Contents</summary>
 	<nav class="ms-4 lg:w-full">
 		<ol class="mt-4">
@@ -26,7 +26,7 @@ const toc = generateToc(headings);
 		const toc = document.querySelector("[data-toc]");
 		if (!(toc instanceof HTMLElement)) return;
 
-		const desktopMedia = window.matchMedia("(min-width: 1024px)");
+		const desktopMedia = window.matchMedia("(min-width: 1280px)");
 		const links = Array.from(
 			toc.querySelectorAll<HTMLAnchorElement>("a[data-toc-link][href^='#']"),
 		);
