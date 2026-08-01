@@ -1,4 +1,4 @@
 ---
-title: "随笔"
+title: "Essay 随笔"
 description: "Personal essays and reflections."
 ---
