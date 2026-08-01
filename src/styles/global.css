@@ -209,6 +209,17 @@
 	text-align: justify;
 }
 
+/* Inline highlights (`==text==` in Markdown, or raw <mark>):
+   soft accent tint that adapts to both themes via --color-accent */
+div.prose mark {
+	background-color: color-mix(in oklch, var(--color-accent) 16%, transparent);
+	border-radius: 0.2em;
+	padding: 0 0.2em;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+	color: inherit;
+}
+
 /* Footnotes: compact, smaller, with a hairline divider */
 section.footnotes {
 	margin-top: 3rem;
