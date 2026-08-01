@@ -1,0 +1,192 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+interface ProjectLink {
+	name: string;
+	url: string;
+}
+
+interface ProjectItem {
+	title: string;
+	date: string;
+	note?: string;
+	description: string;
+	links?: ProjectLink[];
+}
+
+/* ── Research experience (timeline) ── */
+const researchProjects: ProjectItem[] = [
+	{
+		title: "Large Model Based Crossmodal Chinese Poetry Creation",
+		date: "2024–2025",
+		note: "Bachelor's thesis under supervision of Dr. Weiping Zhu",
+		description:
+			"Developed a crossmodal poetry generation system using large models, with functions including high-quality poetry generation, analysis and scoring, and optimization. The system firstly utilized CLIP, miniGPT4 and ERNIE, and finally switched to DeepSeek's series models for better performance.",
+		links: [
+			{ name: "Thesis", url: "/files/bachelor-thesis.pdf" },
+			{ name: "Slides", url: "/files/slides-bachelor-thesis.pdf" },
+		],
+	},
+	{
+		title: "RNN Analysis on Same-Different Task",
+		date: "2024",
+		note: "Research project under supervision of Dr. Xiangbin Teng",
+		description:
+			"Trained RNNs on the same-different task under varying noise levels by neurogym, optimizing the code for readability and extensibility. Analyzed normalized averages and principal components of RNN hidden states, performed linear fitting of activities at different time points to stimuli values, and analyzed the temporal scope.",
+	},
+	{
+		title: "Data Analysis on Forward Flow Task",
+		date: "2024",
+		note: "Research project under supervision of Prof. Yunzhe Liu",
+		description:
+			"Pre-processed word data for forward flow tasks, inserting seed words, removing duplicates, and generating embeddings. Analyzed the correlation between participants' scale scores and statistical metrics.",
+	},
+];
+
+/* ── Development projects (cards) ── */
+const devProjects: ProjectItem[] = [
+	{
+		title: "Running-Speed Modulation of Mice's V1 responses ",
+		date: "2026",
+		note: "Course project for 'Neural Data Science'",
+		description:
+			"Explored running modulation of mice's V1 responses with the Allen two-photon calcium-imaging dataset.",
+		links: [
+			{
+				name: "Code",
+				url: "https://github.com/ZhidongZhang96/NDS-V1-RunningNaturalMod",
+			},
+		],
+	},
+	{
+		title: "The Working Memory Capacity of RNN",
+		date: "2024",
+		note: "Course project for Neuromatch Academy 2024",
+		description:
+			"Explored various effects of parameter settings on the working memory capacity of RNNs.",
+		links: [
+			{
+				name: "Example Code",
+				url: "https://drive.google.com/file/d/1SSVCdSo_x2_bkMs493W0wSXFWl49VYjP/view",
+			},
+			{
+				name: "Blog",
+				url: "/blog/working-memory-capacity-of-rnn/",
+			},
+		],
+	},
+	{
+		title: "PoetryChat",
+		date: "2023",
+		note: "iFLYTEK AI Developer Competition",
+		description:
+			"An interactive poetry learning assistant based on LLM for different ages, supporting different chatting styles, online search, RAG, and image generation.",
+		links: [{ name: "Code", url: "https://github.com/ZhidongZhang96/PoetryChat" }],
+	},
+];
+
+const meta = {
+	title: "Projects",
+	description: "Projects and research work by Zhidong Zhang.",
+};
+---
+
+<PageLayout meta={meta}>
+	<section class="index-content grid gap-4">
+		<div>
+			<h1 class="title mb-4">Projects</h1>
+			<p>A selection of projects I have worked on during my studies and research.</p>
+		</div>
+
+		<!-- Research timeline -->
+		<section aria-labelledby="research-heading">
+			<h2 id="research-heading" class="title mb-4 text-xl">Research</h2>
+			<ol class="relative ml-0 space-y-4 pl-0" role="list">
+				{
+					researchProjects.map((project) => (
+						<li class="grid list-none grid-cols-[1rem_minmax(0,1fr)] gap-x-1 gap-y-0 sm:grid-cols-[1.25rem_minmax(0,1fr)]">
+							<div class="relative flex justify-center pt-1">
+								<div
+									aria-hidden="true"
+									class="absolute bottom-0.5 left-1/2 top-1 w-px -translate-x-1/2 bg-gray-300 dark:bg-gray-700"
+								/>
+								<span
+									aria-hidden="true"
+									class="relative mt-1 h-2 w-2 rounded-full bg-gray-500 ring-3 ring-gray-200 dark:bg-gray-600 dark:ring-gray-800"
+								/>
+							</div>
+							<div class="min-w-0">
+								<div class="text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400">
+									{project.date}
+								</div>
+								<div class="text-accent-2 font-semibold">{project.title}</div>
+								{project.note && (
+									<p class="mt-0 text-xs text-gray-500 dark:text-gray-400">{project.note}</p>
+								)}
+								<p class="mt-0 text-sm">{project.description}</p>
+								{project.links && project.links.length > 0 && (
+									<div class="mt-1 flex flex-wrap gap-x-3 gap-y-0">
+										{project.links.map((link) => (
+											<a
+												class="text-xs font-medium typefolio-link-lighter"
+												href={link.url}
+												rel={link.url.startsWith("http") ? "noreferrer noopener" : undefined}
+												target={link.url.startsWith("http") ? "_blank" : undefined}
+											>
+												[{link.name}]
+											</a>
+										))}
+									</div>
+								)}
+							</div>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<!-- Dev projects grid -->
+		<section aria-labelledby="dev-heading">
+			<h2 id="dev-heading" class="title mb-4 text-xl">Projects</h2>
+			<div class="m-0 grid list-none gap-4 p-0 md:grid-cols-2" role="list">
+				{
+					devProjects.map((project) => (
+						<article class="project-card p-4">
+							<div class="project-card-heading mb-2">
+								<h3 class="project-card-title text-base font-semibold">{project.title}</h3>
+								<span class="text-xs text-gray-500 dark:text-gray-400">{project.date}</span>
+							</div>
+							{project.note && (
+								<p class="mb-2 text-xs text-gray-500 dark:text-gray-400">{project.note}</p>
+							)}
+							<p class="project-card-description mb-3 text-sm">{project.description}</p>
+							{project.links && project.links.length > 0 && (
+								<div class="mt-auto flex flex-wrap gap-x-3 gap-y-1">
+									{project.links.map((link) => (
+										<a
+											class="text-xs font-medium typefolio-link-lighter"
+											href={link.url}
+											rel={link.url.startsWith("http") ? "noreferrer noopener" : undefined}
+											target={link.url.startsWith("http") ? "_blank" : undefined}
+										>
+											[{link.name}]
+										</a>
+									))}
+								</div>
+							)}
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Archive link -->
+		<hr class="index-divider" />
+		<p class="text-sm text-gray-500 dark:text-gray-400">
+			Some projects live on, while others have fulfilled their purpose. 🕯️
+			<a class="font-medium typefolio-link-lighter" href="/projects/archive/">
+				View archived projects <span aria-hidden="true">→</span>
+			</a>
+		</p>
+	</section>
+</PageLayout>

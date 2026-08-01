@@ -1,0 +1,106 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+interface ProjectLink {
+	name: string;
+	url: string;
+}
+
+interface ProjectItem {
+	title: string;
+	date: string;
+	note?: string;
+	description: string;
+	links?: ProjectLink[];
+}
+
+const archivedProjects: ProjectItem[] = [
+	{
+		title: "Paper Classification Based on Abstracts",
+		date: "2023",
+		note: "Course project for 'Commercial Intelligence'",
+		description:
+			"Implemented paper classification based on abstracts using BERT models. (My first project about machine learning!)",
+	},
+	{
+		title: "Ruyi Mirror",
+		date: "2023",
+		note: "Course project for 'Human-Computer Interaction'",
+		description:
+			"Designed and implemented a demo for a virtual application, a magical mirror that can analyze the skin, provide recommendations, and keep track of skin conditions daily. Ruyi (如意) means 'as you wish' in Chinese.",
+		links: [
+			{
+				name: "Demo",
+				url: "https://modao.cc/proto/0X3fP4o7t9dj2sCtnxuJqB/sharing?view_mode=device&screen=rbpTvpkt29ZmGnIv8",
+			},
+		],
+	},
+	{
+		title: "Sport-Record",
+		date: "2023",
+		note: "Course project for 'Mobile Application Development'",
+		description:
+			"A demo app for recording sports data, including user management, sport data recording, and simple statistics. Developed using Swift and SwiftUI, with data persistence handled by SQLite.",
+		links: [{ name: "Code", url: "https://github.com/ZhidongZhang96/Sport-Record" }],
+	},
+	{
+		title: "Exam Master",
+		date: "2022",
+		note: "Course project for 'Primary Project Practice'",
+		description:
+			"A Roguelike game asking players to explore rooms, fight monsters, and earn gold coins to 'pass the exam'. Inspired by Crypt of the NecroDancer, the player can only move and attack to the rhythm of the background music. Developed using Unity and C#.",
+		links: [{ name: "Slides", url: "/files/exam-master.pdf" }],
+	},
+];
+
+const meta = {
+	title: "Archived Projects",
+	description: "Archived projects from coursework and earlier work.",
+};
+---
+
+<PageLayout meta={meta}>
+	<section class="index-content grid gap-4">
+		<div>
+			<h1 class="title mb-4">Archived Projects 🕯️</h1>
+			<p class="text-sm text-gray-500 dark:text-gray-400">
+				Some projects live on, while others have fulfilled their purpose.
+			</p>
+		</div>
+
+		<p>
+			<a class="typefolio-link-lighter" href="/projects/">
+				<span aria-hidden="true">←</span> Back to projects
+			</a>
+		</p>
+
+		<div class="m-0 grid list-none gap-4 p-0 md:grid-cols-2" role="list">
+			{archivedProjects.map((project) => (
+				<article class="project-card p-4">
+					<div class="project-card-heading mb-2">
+						<h3 class="project-card-title text-base font-semibold">{project.title}</h3>
+						<span class="text-xs text-gray-500 dark:text-gray-400">{project.date}</span>
+					</div>
+					{project.note && (
+						<p class="mb-2 text-xs text-gray-500 dark:text-gray-400">{project.note}</p>
+					)}
+					<p class="project-card-description mb-3 text-sm">{project.description}</p>
+					{project.links && project.links.length > 0 && (
+						<div class="mt-auto flex flex-wrap gap-x-3 gap-y-1">
+							{project.links.map((link) => (
+								<a
+									class="text-xs font-medium typefolio-link-lighter"
+									href={link.url}
+									rel="noreferrer noopener"
+									target="_blank"
+								>
+									[{link.name}]
+								</a>
+							))}
+						</div>
+					)}
+				</article>
+			))}
+		</div>
+	</section>
+</PageLayout>

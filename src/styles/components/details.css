@@ -1,0 +1,55 @@
+/*
+ * Notion toggle blocks: <details><summary>…</summary>…</details>
+ *
+ * Scoped to prose content only and excludes `.group` (used by the Backlinks
+ * component's own details), so it can't leak into other UI.
+ */
+.prose details:not(.group) {
+	margin-block: 1.25em;
+	border-inline-start: 2px solid var(--color-rule);
+	background: color-mix(in oklch, var(--color-rule) 12%, transparent);
+	border-radius: 0.375rem;
+	padding-block: 0.75rem;
+	padding-inline: 1rem;
+}
+
+.prose details:not(.group) > summary {
+	cursor: pointer;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: 600;
+	color: var(--color-accent-2);
+}
+
+.prose details:not(.group) > summary::-webkit-details-marker {
+	display: none;
+}
+
+.prose details:not(.group) > summary::before {
+	content: "";
+	flex: none;
+	width: 1rem;
+	height: 1rem;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='black' d='M6.2 3.4 10.8 8l-4.6 4.6-1-1L8.8 8 5.2 4.4z'/%3E%3C/svg%3E");
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	transition: transform 160ms ease;
+}
+
+.prose details:not(.group)[open] > summary::before {
+	transform: rotate(90deg);
+}
+
+/* Keep the first line of content from sticking to the title. */
+.prose details:not(.group) > summary + * {
+	margin-top: 0.75rem;
+}
+
+/* Avoid a double bottom gap inside the box. */
+.prose details:not(.group) > :last-child {
+	margin-bottom: 0;
+}

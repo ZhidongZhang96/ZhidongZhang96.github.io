@@ -1,0 +1,185 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import type { WhatsNewItem } from "@/components/home/WhatsNewTimeline.astro";
+import WhatsNewTimeline from "@/components/home/WhatsNewTimeline.astro";
+import InlineIconLink from "@/components/InlineIconLink.astro";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+// Posts
+const allPosts = await getAllPosts();
+const allPostsByDate = allPosts.sort(
+	collectionDateSort,
+) as CollectionEntry<"blog">[];
+
+// Pinned Posts, set to a max of 5;
+const MAX_PINNED_POSTS = 5;
+const pinnedPosts = allPostsByDate
+	.filter((p) => p.data.pinned)
+	.slice(0, MAX_PINNED_POSTS);
+
+const whatsNewItems: WhatsNewItem[] = [
+	{
+		date: "Oct 2025",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Began my Master's in Computational Neuroscience at University of Tübingen."
+	},
+	{
+		date: "Jun 2025",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Graduated with B.Eng from WHU.",
+	},
+	{
+		date: "Dec 2024",
+		kind: "paper",
+		label: "Paper",
+		description:
+			"Paper on large model based development presented at IEEE SWC 2024.",
+		href: "https://doi.org/10.1109/SWC62898.2024.00034",
+	},
+	{
+		date: "Jul 2024",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Completed summer school at Neuromatch Academy.",
+		href: "https://portal.neuromatchacademy.org/certificate/d83ba21d-39f6-4a09-a00f-15e6efa22bcd",
+	},
+	{
+		date: "Sep 2022",
+		kind: "award",
+		label: "Award",
+		description:
+			"Awarded Third-class Scholarship in Software Engineering.",
+	},
+	{
+		date: "Sep 2021",
+		kind: "milestone",
+		label: "Milestone",
+		description:
+			"Began my Bachelor's at WHU."
+	},
+];
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<section class="index-content">
+		<div class="flex items-center gap-4">
+			<Image
+				priority
+				alt="Portrait of Zhidong Zhang"
+				class="h-20 w-20 rounded-full object-cover"
+				height={320}
+				src="/assets/avatar.png"
+				width={320}
+			/>
+			<div>
+				<h1 class="text-accent-2 text-xl font-semibold wrap-break-word">Zhidong Zhang | 张志东</h1>
+				<div>M.Sc Student in Computational Neuroscience</div>
+				<div>University of Tübingen</div>
+			</div>
+		</div>
+		<hr class="index-divider mt-4" />
+		<div class="mt-4">
+			<p>
+				Hi there. 👋 I am currently a first-year master's student in <strong>Computational Neuroscience</strong> at the
+				<a class="typefolio-link inline-block" href="https://www.neuroschool-tuebingen.de" rel="noreferrer" target="_blank"
+					>University of Tübingen</a
+				>. Before this, I completed my Bachelor's in <strong>Software Engineering</strong> at
+				<a class="typefolio-link inline-block" href="https://www.whu.edu.cn/" rel="noreferrer" target="_blank"
+					>Wuhan University</a
+				>.
+			</p>
+			<p>
+				I am passionate about the intersection of artificial intelligence and
+				neuroscience. While still exploring my research interests, I am particularly
+				drawn to neural dynamics, memory mechanisms, and brain-inspired AI.
+			</p>
+			<p>
+				Beyond study, I enjoy reading, thinking about the mind and
+				consciousness, occasional writing, and hanging around at BiliBili.
+			</p>
+			<p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+				Find me at 
+				<InlineIconLink
+					href="mailto:zhidong.zhang96@foxmail.com"
+					icon="mdi:email"
+					label="Email"
+					width="1.5em"
+					height="1.5em"
+					target="_blank"
+				/>
+				<InlineIconLink
+					href="https://github.com/ZhidongZhang96"
+					icon="mdi:github"
+					label="GitHub"
+					width="1.5em"
+					height="1.5em"
+					target="_blank"
+				/>
+				<InlineIconLink
+					href="https://www.linkedin.com/in/zhidong-zhang-136a94311/"
+					icon="mdi:linkedin"
+					label="LinkedIn"
+					width="1.5em"
+					height="1.5em"
+					target="_blank"
+				/>
+				<InlineIconLink
+					href="https://x.com/ZhangZhidong"
+					icon="x"
+					label="Twitter / X"
+					width="1.5em"
+					height="1.5em"
+					target="_blank"
+				/>
+			</p>
+		</div>
+	</section>
+
+	{
+		pinnedPosts.length > 0 && (
+			<section class="mt-8">
+				<h2 class="title mb-4 flex items-center gap-2 text-xl">
+					Pinned Posts
+					<Icon
+						aria-hidden="true"
+						class="text-accent h-5 w-5 rotate-45"
+						focusable="false"
+						name="mdi:pin-outline"
+					/>
+				</h2>
+				<ul class="space-y-1" role="list">
+					{pinnedPosts.map((p) => (
+						<li class="grid sm:grid-cols-[auto_1fr]">
+							<PostPreview post={p} />
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
+
+	<WhatsNewTimeline items={whatsNewItems} />
+
+	<section class="mt-8">
+		<h2 class="title mb-4 text-xl">Publications</h2>
+		<div class="space-y-2">
+			<p>
+				[1] Liwen Yang*, <span class="font-semibold">Zhidong Zhang*</span>, Kaipeng Niu,
+				Sitian Pan, Weiping Zhu, Chao Ma, "Large Model Based Crossmodal Chinese
+				Poetry Creation," <em>IEEE Smart World Congress (SWC)</em>, 2024.
+				<a class="font-medium typefolio-link-lighter" href="https://doi.org/10.1109/SWC62898.2024.00034">[paper]</a>
+				<a class="font-medium typefolio-link-lighter" href="/files/slides1.pdf">[slides]</a>
+			</p>
+		</div>
+	</section>
+</PageLayout>

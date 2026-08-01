@@ -1,0 +1,27 @@
+.project-card {
+	--project-card-border: color-mix(in oklch, var(--color-global-text) 16%, var(--color-global-bg));
+	--project-card-shadow: 0.2rem 0.2rem 0
+		color-mix(in oklch, var(--color-global-text) 16%, var(--color-global-bg));
+	@apply flex min-h-full flex-col gap-1 border px-4 pt-3 pr-3 pb-3;
+	background: var(--color-global-bg);
+	border-color: var(--project-card-border);
+	box-shadow: var(--project-card-shadow);
+}
+
+html[data-theme="dark"] .project-card {
+	--project-card-border: color-mix(in oklch, var(--color-global-text) 10%, var(--color-global-bg));
+	--project-card-shadow: 0.2rem 0.2rem 0
+		color-mix(in oklch, var(--color-global-text) 10%, var(--color-global-bg));
+}
+
+.project-card-heading {
+	@apply relative;
+}
+
+.project-card-title {
+	@apply text-accent-2 m-0 text-base leading-[1.45] font-semibold;
+}
+
+.project-card-description {
+	@apply m-0;
+}
