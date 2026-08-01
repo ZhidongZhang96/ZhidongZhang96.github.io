@@ -3,6 +3,8 @@ import { Resvg } from "@resvg/resvg-js";
 import type { APIContext, InferGetStaticPropsType } from "astro";
 import satori, { type SatoriOptions } from "satori";
 import { html } from "satori-html";
+import NotoSansSC400 from "@/assets/noto-sans-sc-400.woff";
+import NotoSansSC700 from "@/assets/noto-sans-sc-700.woff";
 import RobotoMonoBold from "@/assets/roboto-mono-700.ttf";
 import RobotoMono from "@/assets/roboto-mono-regular.ttf";
 import { getAllPosts } from "@/data/post";
@@ -25,6 +27,20 @@ const ogOptions: SatoriOptions = {
 		{
 			data: Buffer.from(RobotoMonoBold),
 			name: "Roboto Mono",
+			style: "normal",
+			weight: 700,
+		},
+		// CJK fallback: Satori picks the first font containing a glyph, so
+		// Latin goes to Roboto Mono and Chinese falls back to Noto Sans SC.
+		{
+			data: Buffer.from(NotoSansSC400),
+			name: "Noto Sans SC",
+			style: "normal",
+			weight: 400,
+		},
+		{
+			data: Buffer.from(NotoSansSC700),
+			name: "Noto Sans SC",
 			style: "normal",
 			weight: 700,
 		},
