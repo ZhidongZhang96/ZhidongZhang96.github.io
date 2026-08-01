@@ -1,6 +1,6 @@
 ---
 title: "Linux davfs2 搭载 Webdav 协议网盘"
-description: "Linux课程大作业的一点记录"
+description: "Linux课程大作业的一点记录📝（暴躁）"
 publishDate: 2023-12-05
 tags: ["linux"]
 ---

@@ -2,7 +2,7 @@
 title: "The Working Memory Capacity of RNN (Project for NMA 2024)"
 description: "Project for NeuroMatch Academy 2024"
 publishDate: 2024-07-27
-tags: ["working-memory"]
+tags: ["course", "working-memory"]
 ---
 
 This is a short blog for the course project we did during the online summer school NeuroMatch Academy 2024, which took only one week.
