@@ -1,4 +1,8 @@
 ---
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+
 interface Props {
 	points: string[];
 }
@@ -7,9 +11,17 @@ const { points } = Astro.props;
 const orderedPointRegex = /^\d+\.\s+(.*)$/;
 const isOrderedList =
 	points.length > 0 && points.every((point) => orderedPointRegex.test(point.trim()));
-const renderedPoints = isOrderedList
-	? points.map((point) => point.trim().replace(orderedPointRegex, "$1"))
-	: points;
+
+const processor = await createMarkdownProcessor({
+	remarkPlugins: [remarkMath],
+	rehypePlugins: [rehypeKatex],
+});
+
+const renderedPoints = await Promise.all(
+	(isOrderedList ? points.map((point) => point.trim().replace(orderedPointRegex, "$1")) : points).map(
+		async (point) => (await processor.render(point)).code,
+	),
+);
 ---
 
 <div class="mb-8" role="note" aria-label="Article summary">
@@ -17,11 +29,11 @@ const renderedPoints = isOrderedList
 	{
 		isOrderedList ? (
 			<ol>
-				{renderedPoints.map((point) => <li>{point}</li>)}
+				{renderedPoints.map((html) => <li set:html={html} />)}
 			</ol>
 		) : (
 			<ul>
-				{renderedPoints.map((point) => <li>{point}</li>)}
+				{renderedPoints.map((html) => <li set:html={html} />)}
 			</ul>
 		)
 	}

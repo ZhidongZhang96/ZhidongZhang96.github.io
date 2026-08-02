@@ -1,17 +1,17 @@
 ---
 title: "GMM and EM algorithm"
 description: "Course notes about the GMM and EM algorithms."
-publishDate: 2024-10-15
+publishDate: 2026-08-02
 tags: ["course", "math"]
 tldr:
-  - "The EM algorithm is a general technique for maximum likelihood estimation in latent variable models, where the key difficulty is the sum-inside-log form of the marginal likelihood."
-  - 'In the GMM, the latent variable $z_i$ is a one-hot cluster assignment, and the posterior $p(z_{ik}=1|\mathbf x_i)$ acts as the responsibility, enabling soft assignment.'
+  - "The **EM algorithm** is a general technique for maximum likelihood estimation in latent variable models, where the key difficulty is the sum-inside-log form of the marginal likelihood."
+  - 'In the **Gaussian Mixture model**, the latent variable $z_i$ is a one-hot cluster assignment, and the posterior $p(z_{ik}=1|\mathbf x_i)$ acts as the **responsibility**, enabling soft assignment.'
   - 'MLE for GMM yields fixed-point equations with no closed-form solution, so we iterate between an E-step that computes the responsibilities and an M-step that updates $\boldsymbol\mu_k, \boldsymbol\Sigma_k, \pi_k$.'
-  - 'By Jensen''s inequality, the ELBO $\mathcal L(q,\theta)$ lower-bounds $\log p(X|\theta)$: the M-step maximizes it with respect to $\theta$, while the E-step tightens it by minimizing $D_{KL}(q\|p(Z|X,\theta))$.'
+  - 'By **Jensen''s inequality**, the ELBO $\mathcal L(q,\theta)$ lower-bounds $\log p(X|\theta)$: the M-step maximizes it with respect to $\theta$, while the E-step tightens it by minimizing $D_{KL}(q\|p(Z|X,\theta))$.'
   - "When the exact posterior is intractable, we restrict $q$ to a tractable family, leading to Variational Inference."
 ---
 
-The Expectation-maximization algorithm is a general technique for finding maximum likelihood solutions for latent variable models. Here I use the discrete latent-variable case, the Gaussian mixture model, to introduce the idea of EM.
+The **Expectation-maximization algorithm** is a general technique for finding maximum likelihood solutions for **latent variable models**. Here I use the discrete latent-variable case, the **Gaussian mixture model**, to introduce the idea of EM.
 
 ## Gaussian Mixture Model
 
@@ -120,7 +120,7 @@ However, it does suggest an iterative scheme to find a solution, which turns out
 
 - Check convergence by evaluating $\log p(X|\theta)$
 
-The initialization matters for a good and fast convergence. In practice, the K-means algorithm is used to find a suitable initialization for it, which takes much less iterations than GMM to converge. But note that it does not guarantee a global maximum, as the log-likelihood $\log p(X|\theta)$ can be multimodal.
+The initialization matters for a good and fast convergence. In practice, the **K-means** algorithm is used to find a suitable initialization for it, which takes much less iterations than GMM to converge. But note that it does not guarantee a global maximum, as the log-likelihood $\log p(X|\theta)$ can be multimodal.
 
 ## EM-algorithm
 
@@ -191,8 +191,6 @@ Therefore, with a new parameter $\theta_{\text{new}}$, the E-step aims to find a
 
 :::note[The General EM-algorithm]
 Given a joint distribution $p(X,Z|\theta)$ over observed variables $X$, latent variables $Z$ and the parameters $\theta$, the goal is to maximize the marginal likelihood $p(X|\theta)$ with respect to $\theta$.
-:::
-
 1. Initialize the parameters $\theta = \theta_0$
 2. Iteration
    1. **E-step** Evaluate the posterior $p(Z|X,\theta_{\text{old}})$, use it as the proposal $q(Z) = p(Z|X,\theta_{\text{old}})$ (_find the lower bound_)
@@ -203,7 +201,7 @@ Given a joint distribution $p(X,Z|\theta)$ over observed variables $X$, latent v
       $$
 
    3. Check for convergence, and apply $\theta_{\text{old}} \leftarrow \theta_{\text{new}}$ if not satisfied.
-
+:::
 > In many cases, it is pretty hard to actually find the posterior to make $D_{KL}{\large[} q(Z) \| p(Z|X,\theta) {\large]}=0$ perfectly. And we have to use $q(Z)$ in a convenient family to make life easier, for example, Gaussian distributions or exponential family. The optimization over function $q(Z)$ towards this objective leads to calculus of variations, and the idea of **Variational Inference**.
 
 ## GMM revisited
@@ -231,6 +229,6 @@ $$
 
 By setting $\nabla_{\theta} \mathbb E_{p(Z|X,\theta_{old})}[\log p(X,Z|\theta)] = 0$, one can easily get the exact process shown in [Learning of GMM](#learning-of-gmm).
 
-[^1]: The following discussion apply equally well to continuous latent variables, by replacing the sum with an integral
+[^1]: The following discussion apply equally well to continuous latent variables, by replacing the sum with an integral.
 
 [^2]: Bishop, Christopher M., and Nasser M. Nasrabadi. _Pattern recognition and machine learning_. Vol. 4. No. 4. New York: springer, 2006.
