@@ -209,6 +209,25 @@
 	text-align: justify;
 }
 
+/* Remove the default Tailwind Typography treatments on blockquotes:
+   decorative quote marks (open-quote / close-quote), italic text,
+   and the accent-colored quote text (kept as a slightly muted gray). */
+div.prose blockquote {
+	quotes: none;
+	font-style: normal;
+	color: inherit;
+	border-left-width: 0.125rem;
+	border-left-color: var(--color-accent);
+	padding: 0.25rem 1rem;
+	border-radius: 0.375rem;
+	background-color: color-mix(in oklch, var(--color-global-text) 2%, transparent);
+}
+
+div.prose blockquote p:first-of-type::before,
+div.prose blockquote p:last-of-type::after {
+	content: none;
+}
+
 /* Inline highlights (`==text==` in Markdown, or raw <mark>):
    soft accent tint that adapts to both themes via --color-accent */
 div.prose mark {
