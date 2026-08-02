@@ -5,10 +5,10 @@ publishDate: 2026-08-02
 tags: ["course", "math"]
 tldr:
   - "The **EM algorithm** is a general technique for maximum likelihood estimation in latent variable models, where the key difficulty is the sum-inside-log form of the marginal likelihood."
-  - 'In the **Gaussian Mixture model**, the latent variable $z_i$ is a one-hot cluster assignment, and the posterior $p(z_{ik}=1|\mathbf x_i)$ acts as the **responsibility**, enabling soft assignment.'
+  - 'In the **Gaussian Mixture model**, the latent variable $\mathbf z_i$ is a one-hot cluster assignment, and the posterior $p(z_{ik}=1|\mathbf x_i)$ acts as the **responsibility**, enabling soft assignment.'
   - 'MLE for GMM yields fixed-point equations with no closed-form solution, so we iterate between an E-step that computes the responsibilities and an M-step that updates $\boldsymbol\mu_k, \boldsymbol\Sigma_k, \pi_k$.'
-  - 'By **Jensen''s inequality**, the ELBO $\mathcal L(q,\theta)$ lower-bounds $\log p(X|\theta)$: the M-step maximizes it with respect to $\theta$, while the E-step tightens it by minimizing $D_{KL}(q\|p(Z|X,\theta))$.'
-  - "When the exact posterior is intractable, we restrict $q$ to a tractable family, leading to Variational Inference."
+  - 'By **Jensen''s inequality**, the ELBO $\mathcal L(q,\theta)$ lower-bounds $\log p(X|\theta)$: the M-step maximizes it with respect to $\theta$, while the E-step tightens it by minimizing $D_{KL}(q(Z)\|p(Z|X,\theta))$.'
+  - "When the exact posterior is intractable, we restrict $q(Z)$ to a tractable family. The optimization leading to **Variational Inference**."
 ---
 
 The **Expectation-maximization algorithm** is a general technique for finding maximum likelihood solutions for **latent variable models**. Here I use the discrete latent-variable case, the **Gaussian mixture model**, to introduce the idea of EM.
