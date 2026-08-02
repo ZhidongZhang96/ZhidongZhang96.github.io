@@ -194,7 +194,7 @@ Given a joint distribution $p(X,Z|\theta)$ over observed variables $X$, latent v
 1. Initialize the parameters $\theta = \theta_0$
 2. Iteration
    1. **E-step** Evaluate the posterior $p(Z|X,\theta_{\text{old}})$, use it as the proposal $q(Z) = p(Z|X,\theta_{\text{old}})$ (_find the lower bound_)
-   2. **M-step** Update the parameter (_tight the lower bound_):
+   2. **M-step** Update the parameter (_max the lower bound_):
 
       $$
       \theta_{\text{new}} = \arg\max_{\theta} \mathcal L(\theta,\theta_{\text{old}}) = \arg\max_{\theta} \sum_Z p(Z|X,\theta_{\text{old}}) \log p(X,Z|\theta)
@@ -202,6 +202,9 @@ Given a joint distribution $p(X,Z|\theta)$ over observed variables $X$, latent v
 
    3. Check for convergence, and apply $\theta_{\text{old}} \leftarrow \theta_{\text{new}}$ if not satisfied.
 :::
+
+By iterating the two steps, the EM algorithm guarantees a monotonic increase of the log-likelihood $\log p(X|\theta)$, but again not a global maximum.
+
 > In many cases, it is pretty hard to actually find the posterior to make $D_{KL}{\large[} q(Z) \| p(Z|X,\theta) {\large]}=0$ perfectly. And we have to use $q(Z)$ in a convenient family to make life easier, for example, Gaussian distributions or exponential family. The optimization over function $q(Z)$ towards this objective leads to calculus of variations, and the idea of **Variational Inference**.
 
 ## GMM revisited
