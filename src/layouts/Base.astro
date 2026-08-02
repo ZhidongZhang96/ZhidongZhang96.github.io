@@ -8,10 +8,13 @@ import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
+	/** Tailwind width class for the page container. Blog posts widen to max-w-4xl. */
+	containerClass?: string;
 }
 
 const {
 	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	containerClass = "max-w-3xl",
 } = Astro.props;
 ---
 
@@ -20,7 +23,7 @@ const {
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
 	</head>
 	<body
-		class="bg-global-bg text-global-text mx-auto flex min-h-screen max-w-4xl flex-col px-4 pt-16 font-sans text-[15px] font-normal antialiased sm:px-8"
+		class={`bg-global-bg text-global-text mx-auto flex min-h-screen ${containerClass} flex-col px-4 pt-16 font-sans text-[15px] font-normal antialiased sm:px-8`}
 	>
 		<SkipLink />
 		<Header />
