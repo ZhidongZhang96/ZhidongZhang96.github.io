@@ -206,21 +206,31 @@
 	--tw-prose-headings: var(--color-accent-2);
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
-	text-align: justify;
+	text-align: left;
+	/* 左右等距：取消注释下一行即可恢复 */
+	/* text-align: justify; */
 }
 
 /* Remove the default Tailwind Typography treatments on blockquotes:
-   decorative quote marks (open-quote / close-quote), italic text,
-   and the accent-colored quote text (kept as a slightly muted gray). */
+   decorative quote marks, italic text, and the accent-colored bar/background.
+   Plain `>` quotes read as a quiet grey callout instead. */
 div.prose blockquote {
 	quotes: none;
 	font-style: normal;
-	color: inherit;
-	border-left-width: 0.125rem;
-	border-left-color: var(--color-accent);
-	padding: 0.25rem 1rem;
-	border-radius: 0.375rem;
-	background-color: color-mix(in oklch, var(--color-global-text) 2%, transparent);
+	color: color-mix(in oklch, var(--color-global-text) 68%, transparent);
+	border-left-width: 1px;
+	border-left-color: color-mix(in oklch, var(--color-global-text) 55%, transparent);
+	padding: 0.125rem 1rem;
+}
+
+/* The typography plugin's paragraph margins add a second, larger gap above and
+   below the text; collapse them so the padding alone controls the edge. */
+div.prose blockquote > :first-child {
+	margin-top: 0;
+}
+
+div.prose blockquote > :last-child {
+	margin-bottom: 0;
 }
 
 div.prose blockquote p:first-of-type::before,

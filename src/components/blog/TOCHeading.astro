@@ -12,14 +12,14 @@ const {
 
 <li class={`${depth > 2 ? "ms-2" : ""}`}>
 	<a
-		class={`toc-link line-clamp-2 ${depth <= 2 ? "mt-2" : "mt-1 text-xs"}`}
+		class={`toc-link line-clamp-2 ${depth <= 2 ? "toc-root mt-2" : "toc-child mt-1 text-xs"}`}
 		data-active="false"
 		data-toc-link
 		href={`#${slug}`}>{text}</a
 	>
 	{
 		!!children.length && (
-			<ol>
+			<ol class="toc-nested">
 				{children.map((subheading) => (
 					<Astro.self heading={subheading} />
 				))}
@@ -30,21 +30,39 @@ const {
 
 <style>
 	.toc-link {
+		display: block;
 		transition: color 160ms ease;
+		color: color-mix(in oklch, var(--color-global-text) 45%, transparent);
 	}
 
-	@media (min-width: 64rem) {
-		.toc-link {
-			color: color-mix(in oklch, var(--color-global-text) 82%, var(--color-accent) 18%);
-		}
+	/* Top-level items sit on the rule; the transparent border overlaps the
+	   rule so the accent can travel it without shifting the layout. */
+	.toc-root {
+		margin-left: -1px;
+		padding-left: 0.75rem;
+		border-left: 1px solid transparent;
+	}
 
-		.toc-link[data-active="true"] {
-			color: color-mix(in oklch, var(--color-accent) 78%, white);
-		}
+	.toc-root[data-active="true"] {
+		color: var(--color-global-text);
+		border-left-color: var(--color-accent);
+	}
 
-		.toc-link:hover,
-		.toc-link:focus-visible {
-			color: var(--color-accent);
-		}
+	/* Nested items indent under their parent and light up without a rule. */
+	.toc-nested {
+		border-left: 0;
+	}
+
+	.toc-child {
+		padding-left: 0.75rem;
+	}
+
+	.toc-child[data-active="true"] {
+		color: var(--color-accent);
+	}
+
+	.toc-link:hover,
+	.toc-link:focus-visible {
+		color: var(--color-global-text);
 	}
 </style>
